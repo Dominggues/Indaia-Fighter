@@ -39,6 +39,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Personagens
+    uniqueID: 1310627211
+    locked: 0
+  - name: Fundo
+    uniqueID: 491573557
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

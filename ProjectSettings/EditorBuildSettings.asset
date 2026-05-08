@@ -6,8 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/MenuPrincipal.unity
+    guid: 3cb9249183789f5418c9b3c0b46313b2
+  - enabled: 1
+    path: Assets/Scenes/SelecaoDePersonagem.unity
+    guid: 0d96803e282380c458a3e6f1a510f3f3
+  - enabled: 1
+    path: Assets/Scenes/SelecaoDeMapas.unity
+    guid: 8e4f099aa514d2d47a18998889e5cc8a
+  - enabled: 1
+    path: Assets/Scenes/CenaDeLuta.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/LoadingVersus.unity
+    guid: e0924242de334824daafd2ab3cfa0305
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
