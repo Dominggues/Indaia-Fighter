@@ -31,6 +31,11 @@ public class SelecaoPersonagemManager : MonoBehaviour
 
     private bool posicoesIniciaisAjustadas = false; 
 
+    void ForcarPosicaoInicial()
+        {
+            AtualizarTelaP1();
+        }
+
     void Start()
     {
         cursorP2.gameObject.SetActive(false);
@@ -38,8 +43,9 @@ public class SelecaoPersonagemManager : MonoBehaviour
         
         if (textoAvisoP2 != null) textoAvisoP2.gameObject.SetActive(true);
         
-        // Esconde o nome do P2 até ele entrar no jogo
         if (textoNomeP2 != null) textoNomeP2.text = "???"; 
+
+        Invoke("ForcarPosicaoInicial", 0.1f);
     }
 
     void Update()

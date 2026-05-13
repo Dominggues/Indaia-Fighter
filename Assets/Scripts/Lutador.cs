@@ -7,7 +7,7 @@ public class Lutador : MonoBehaviour
     [Header("Configuração de Player")]
     public bool isPlayer1; // Marque no Inspector se for o P1
     public string nomeLutador;
-    public LutaManager lutaManager; // Arraste o objeto Juiz aqui
+    // public LutaManager lutaManager; // Arraste o objeto Juiz aqui
 
     [Header("Movimentação")]
     public float speed = 5f;
@@ -75,14 +75,15 @@ public class Lutador : MonoBehaviour
     {
         rb.velocity = new Vector2(moveX * speed, rb.velocity.y);
 
+        // CORREÇÃO: Usando a Escala para virar o personagem de forma segura!
         if (moveX > 0)
         {
-            transform.eulerAngles = new Vector3(0f, 0f, 0f);
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             anim.SetBool("IsRun", true);
         }
         else if (moveX < 0)
         {
-            transform.eulerAngles = new Vector3(0f, 180f, 0f);
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             anim.SetBool("IsRun", true);
         }
         else
@@ -100,15 +101,16 @@ public class Lutador : MonoBehaviour
 
     void Ataques()
     {
+        // CORREÇÃO: Usando Triggers para facilitar a criação no Animator
         if (isPlayer1)
         {
-            if (Input.GetKeyDown(KeyCode.F)) anim.Play("Attack", -1); // Soco
-            if (Input.GetKeyDown(KeyCode.G)) anim.Play("Attack1", -1); // Chute
+            if (Input.GetKeyDown(KeyCode.F)) anim.SetTrigger("Soco"); 
+            if (Input.GetKeyDown(KeyCode.G)) anim.SetTrigger("Chute"); 
         }
         else // Player 2
         {
-            if (Input.GetKeyDown(KeyCode.K)) anim.Play("Attack", -1); // Soco
-            if (Input.GetKeyDown(KeyCode.L)) anim.Play("Attack1", -1); // Chute
+            if (Input.GetKeyDown(KeyCode.K)) anim.SetTrigger("Soco"); 
+            if (Input.GetKeyDown(KeyCode.L)) anim.SetTrigger("Chute"); 
         }
     }
 
@@ -129,12 +131,13 @@ public class Lutador : MonoBehaviour
     void Die()
     {
         morto = true;
-        anim.SetTrigger("Die"); // Certifique-se de ter esse trigger ou mude para Play("Morte")
-        lutaManager.VerificarVencedor(this);
+        anim.SetTrigger("Die"); 
+        //lutaManager.VerificarVencedor(this);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        // ATENÇÃO: Confirme se o seu chão tem a Tag "Ground" certinho com letra maiúscula!
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;

@@ -37,12 +37,12 @@ public class LoadingManager : MonoBehaviour
             textoNomeMapa.text = "LOCAL: " + nomesMapas[idMapa];
         }
 
-        // 3. Inicia um cronômetro para mudar de tela sozinho
         Invoke("IrParaLuta", tempoDeLoading);
     }
 
     void IrParaLuta()
     {
+
         SceneManager.LoadScene(nomeCenaLuta);
     }
 }

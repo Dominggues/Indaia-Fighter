@@ -844,14 +844,14 @@ MonoBehaviour:
   textoNomeMapa: {fileID: 621572216}
   spritesPersonagens:
   - {fileID: -6315157059652510824, guid: a1ffeefe4e28f8c48a71fa13126cb946, type: 3}
-  - {fileID: -8985796244502500541, guid: 72785ed0ff153d14c839d5e4b735669f, type: 3}
-  - {fileID: -1922018029142129325, guid: 4eb5eb2c859fdae428c96d47d7596c91, type: 3}
   - {fileID: 7855802167533862125, guid: b57089ed9e84c8247acce282d3f6259d, type: 3}
-  - {fileID: 8887911468908877335, guid: ed0d328ef3bda254a9f389318a89c10d, type: 3}
-  - {fileID: -830520995791483229, guid: 23bc2fbc142b6464a8f9306bb2074331, type: 3}
-  - {fileID: -1055848576014618925, guid: 6c1b68fcd1831d44aa81a507c3a654f5, type: 3}
   - {fileID: -4511814342028577462, guid: 1fe30f79a5d217b4f9db52c50a937cac, type: 3}
+  - {fileID: -1055848576014618925, guid: 6c1b68fcd1831d44aa81a507c3a654f5, type: 3}
   - {fileID: -204310898181380874, guid: 3d85dfdf58f62f34ab19e86b9fcf412f, type: 3}
+  - {fileID: 8887911468908877335, guid: ed0d328ef3bda254a9f389318a89c10d, type: 3}
+  - {fileID: -1922018029142129325, guid: 4eb5eb2c859fdae428c96d47d7596c91, type: 3}
+  - {fileID: -830520995791483229, guid: 23bc2fbc142b6464a8f9306bb2074331, type: 3}
+  - {fileID: -8985796244502500541, guid: 72785ed0ff153d14c839d5e4b735669f, type: 3}
   spritesMapas:
   - {fileID: 8744863119864876717, guid: 3a2ad1562be3c614fb9f5b274fdb04f0, type: 3}
   - {fileID: 49308474294036952, guid: 3614ae13102b21546a8aca339ea57a84, type: 3}
