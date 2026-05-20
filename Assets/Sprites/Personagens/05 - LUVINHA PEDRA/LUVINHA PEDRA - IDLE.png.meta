@@ -14,9 +14,6 @@ TextureImporter:
   - first:
       213: 5758789403510612657
     second: LUVINHA PEDRA - IDLE_3
-  - first:
-      213: 6728899762067186552
-    second: LUVINHA PEDRA - IDLE_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,12 +112,12 @@ TextureImporter:
       name: LUVINHA PEDRA - IDLE_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 77
-        width: 257
-        height: 586
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 720
+        y: 244
+        width: 272
+        height: 610
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -137,12 +134,12 @@ TextureImporter:
       name: LUVINHA PEDRA - IDLE_1
       rect:
         serializedVersion: 2
-        x: 279
-        y: 77
-        width: 251
-        height: 579
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1057
+        y: 243
+        width: 291
+        height: 615
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -159,12 +156,12 @@ TextureImporter:
       name: LUVINHA PEDRA - IDLE_2
       rect:
         serializedVersion: 2
-        x: 561
-        y: 77
-        width: 257
-        height: 598
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1409
+        y: 245
+        width: 286
+        height: 615
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -181,12 +178,12 @@ TextureImporter:
       name: LUVINHA PEDRA - IDLE_3
       rect:
         serializedVersion: 2
-        x: 831
-        y: 77
-        width: 251
-        height: 592
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1773
+        y: 245
+        width: 277
+        height: 612
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,33 +196,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: LUVINHA PEDRA - IDLE_4
-      rect:
-        serializedVersion: 2
-        x: 1089
-        y: 77
-        width: 269
-        height: 585
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 873a93faeaad16d50800000000000000
-      internalID: 6728899762067186552
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: bcfca30a3d9182147a0586f4069036c3
     internalID: 0
     vertices: []
     indices: 
@@ -239,7 +214,6 @@ TextureImporter:
       LUVINHA PEDRA - IDLE_1: 8436620625724805209
       LUVINHA PEDRA - IDLE_2: -5765906047865703808
       LUVINHA PEDRA - IDLE_3: 5758789403510612657
-      LUVINHA PEDRA - IDLE_4: 6728899762067186552
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

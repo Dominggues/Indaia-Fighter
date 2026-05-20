@@ -14,9 +14,6 @@ TextureImporter:
   - first:
       213: 1625626738589539928
     second: BRU MARQUEZ - IDLE_3
-  - first:
-      213: -96434377192215192
-    second: BRU MARQUEZ - IDLE_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -87,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -115,10 +112,10 @@ TextureImporter:
       name: BRU MARQUEZ - IDLE_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 72
-        width: 252
-        height: 586
+        x: 727
+        y: 242
+        width: 272
+        height: 610
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,10 +134,10 @@ TextureImporter:
       name: BRU MARQUEZ - IDLE_1
       rect:
         serializedVersion: 2
-        x: 296
-        y: 69
-        width: 242
-        height: 584
+        x: 1061
+        y: 248
+        width: 288
+        height: 605
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,10 +156,10 @@ TextureImporter:
       name: BRU MARQUEZ - IDLE_2
       rect:
         serializedVersion: 2
-        x: 549
-        y: 72
-        width: 262
-        height: 586
+        x: 1408
+        y: 250
+        width: 286
+        height: 604
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,10 +178,10 @@ TextureImporter:
       name: BRU MARQUEZ - IDLE_3
       rect:
         serializedVersion: 2
-        x: 842
-        y: 76
-        width: 241
-        height: 582
+        x: 1768
+        y: 243
+        width: 274
+        height: 611
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,28 +192,6 @@ TextureImporter:
       bones: []
       spriteID: 85e9103e7e26f8610800000000000000
       internalID: 1625626738589539928
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BRU MARQUEZ - IDLE_4
-      rect:
-        serializedVersion: 2
-        x: 1089
-        y: 72
-        width: 265
-        height: 586
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 86d6253e17569aef0800000000000000
-      internalID: -96434377192215192
       vertices: []
       indices: 
       edges: []
@@ -239,7 +214,6 @@ TextureImporter:
       BRU MARQUEZ - IDLE_1: -3247737948222379758
       BRU MARQUEZ - IDLE_2: -7857781398387133929
       BRU MARQUEZ - IDLE_3: 1625626738589539928
-      BRU MARQUEZ - IDLE_4: -96434377192215192
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

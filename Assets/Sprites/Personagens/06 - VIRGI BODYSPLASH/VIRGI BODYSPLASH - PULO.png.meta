@@ -121,12 +121,12 @@ TextureImporter:
       name: VIRGI BODYSPLASH - PULO_0
       rect:
         serializedVersion: 2
-        x: 52
-        y: 18
-        width: 191
-        height: 411
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 83
+        y: 29
+        width: 304
+        height: 658
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -143,12 +143,12 @@ TextureImporter:
       name: VIRGI BODYSPLASH - PULO_1
       rect:
         serializedVersion: 2
-        x: 314
-        y: 19
-        width: 218
-        height: 394
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 499
+        y: 30
+        width: 348
+        height: 631
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -165,12 +165,12 @@ TextureImporter:
       name: VIRGI BODYSPLASH - PULO_2
       rect:
         serializedVersion: 2
-        x: 572
-        y: 63
-        width: 200
-        height: 421
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 910
+        y: 101
+        width: 318
+        height: 674
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -187,12 +187,12 @@ TextureImporter:
       name: VIRGI BODYSPLASH - PULO_3
       rect:
         serializedVersion: 2
-        x: 829
-        y: 145
-        width: 192
-        height: 433
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1319
+        y: 232
+        width: 305
+        height: 693
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -209,12 +209,12 @@ TextureImporter:
       name: VIRGI BODYSPLASH - PULO_4
       rect:
         serializedVersion: 2
-        x: 1062
-        y: 86
-        width: 163
-        height: 446
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1689
+        y: 137
+        width: 260
+        height: 715
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -231,12 +231,12 @@ TextureImporter:
       name: VIRGI BODYSPLASH - PULO_5
       rect:
         serializedVersion: 2
-        x: 1279
-        y: 16
-        width: 192
-        height: 399
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 2035
+        y: 25
+        width: 305
+        height: 639
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -253,12 +253,12 @@ TextureImporter:
       name: VIRGI BODYSPLASH - PULO_6
       rect:
         serializedVersion: 2
-        x: 1530
-        y: 16
-        width: 190
-        height: 413
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 2434
+        y: 25
+        width: 303
+        height: 662
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -275,7 +275,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ee93f87f4ca87cd49b432eca2fc82e20
     internalID: 0
     vertices: []
     indices: 

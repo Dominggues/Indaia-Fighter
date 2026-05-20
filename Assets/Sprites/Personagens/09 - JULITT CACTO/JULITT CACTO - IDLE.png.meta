@@ -14,9 +14,6 @@ TextureImporter:
   - first:
       213: -5087827168096704789
     second: JULITT CACTO - IDLE_3
-  - first:
-      213: -7463122998813796562
-    second: JULITT CACTO - IDLE_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,12 +112,12 @@ TextureImporter:
       name: JULITT CACTO - IDLE_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 68
-        width: 267
-        height: 620
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 745
+        y: 251
+        width: 264
+        height: 614
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -137,12 +134,12 @@ TextureImporter:
       name: JULITT CACTO - IDLE_1
       rect:
         serializedVersion: 2
-        x: 285
-        y: 68
-        width: 263
-        height: 618
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1068
+        y: 261
+        width: 286
+        height: 591
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -159,12 +156,12 @@ TextureImporter:
       name: JULITT CACTO - IDLE_2
       rect:
         serializedVersion: 2
-        x: 560
-        y: 72
-        width: 281
-        height: 656
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1406
+        y: 256
+        width: 317
+        height: 591
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -181,12 +178,12 @@ TextureImporter:
       name: JULITT CACTO - IDLE_3
       rect:
         serializedVersion: 2
-        x: 863
-        y: 68
-        width: 242
-        height: 620
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1764
+        y: 251
+        width: 265
+        height: 614
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,33 +196,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: JULITT CACTO - IDLE_4
-      rect:
-        serializedVersion: 2
-        x: 1113
-        y: 68
-        width: 268
-        height: 620
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e27d7a48c29ad6890800000000000000
-      internalID: -7463122998813796562
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ace3f4b114a3b8f488d35fdd7a85de83
     internalID: 0
     vertices: []
     indices: 
@@ -239,7 +214,6 @@ TextureImporter:
       JULITT CACTO - IDLE_1: 5441599986610013758
       JULITT CACTO - IDLE_2: -7138350745533484422
       JULITT CACTO - IDLE_3: -5087827168096704789
-      JULITT CACTO - IDLE_4: -7463122998813796562
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

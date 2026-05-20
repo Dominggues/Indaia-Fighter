@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 1689676139569825845}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.75, y: -4.91, z: 0}
-  m_LocalScale: {x: 2.9563322, y: 2.9563322, z: 2.9563322}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: -830520995791483229, guid: 23bc2fbc142b6464a8f9306bb2074331, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -108,9 +108,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lutador
   isPlayer1: 0
-  nomeLutador: Player 2
-  speed: 5
-  jumpForce: 10
+  nomeLutador: VirgiBodySplash
+  speed: 11
+  jumpForce: 12
   maxLife: 100
   currentLife: 0
   healthSlider: {fileID: 0}
@@ -129,8 +129,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 3
+  m_Material: {fileID: 6200000, guid: 02bd2695c95e00f45a9460d59cdff86f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -175,17 +175,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.003977537, y: 3.0348735}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.82, y: 6.4}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 2.670652, y: 6.0699997}
     newSize: {x: 2.82, y: 6.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.82, y: 6.4}
+  m_Size: {x: 2.6616602, y: 6.0557995}
   m_EdgeRadius: 0
 --- !u!95 &1283892590572346427
 Animator:
@@ -197,7 +197,7 @@ Animator:
   m_GameObject: {fileID: 1689676139569825845}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 6714f22674377834e94b4b79040ca1de, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -14,9 +14,6 @@ TextureImporter:
   - first:
       213: 4835216942832463766
     second: OROENO - IDLE_3
-  - first:
-      213: -7201076939535346735
-    second: OROENO - IDLE_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,12 +112,12 @@ TextureImporter:
       name: OROENO - IDLE_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 78
-        width: 257
-        height: 586
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 723
+        y: 245
+        width: 273
+        height: 612
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -137,12 +134,12 @@ TextureImporter:
       name: OROENO - IDLE_1
       rect:
         serializedVersion: 2
-        x: 279
-        y: 78
-        width: 252
-        height: 583
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1057
+        y: 245
+        width: 293
+        height: 616
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -159,12 +156,12 @@ TextureImporter:
       name: OROENO - IDLE_2
       rect:
         serializedVersion: 2
-        x: 561
-        y: 78
-        width: 257
-        height: 592
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1407
+        y: 245
+        width: 289
+        height: 618
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -181,12 +178,12 @@ TextureImporter:
       name: OROENO - IDLE_3
       rect:
         serializedVersion: 2
-        x: 831
-        y: 78
-        width: 257
-        height: 590
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1768
+        y: 245
+        width: 279
+        height: 616
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,33 +196,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: OROENO - IDLE_4
-      rect:
-        serializedVersion: 2
-        x: 1089
-        y: 78
-        width: 269
-        height: 581
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1d31dba2da2a01c90800000000000000
-      internalID: -7201076939535346735
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b9217655c7cc38e4e8b5d12bd1fa38ab
     internalID: 0
     vertices: []
     indices: 
@@ -239,7 +214,6 @@ TextureImporter:
       OROENO - IDLE_1: 3415610636634174431
       OROENO - IDLE_2: -9056523204275429292
       OROENO - IDLE_3: 4835216942832463766
-      OROENO - IDLE_4: -7201076939535346735
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

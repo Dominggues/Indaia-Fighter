@@ -115,12 +115,12 @@ TextureImporter:
       name: VIRGI BODYSPLASH - CAMINHAR_0
       rect:
         serializedVersion: 2
-        x: 39
-        y: 26
-        width: 258
-        height: 580
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 588
+        y: 229
+        width: 276
+        height: 620
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -137,12 +137,12 @@ TextureImporter:
       name: VIRGI BODYSPLASH - CAMINHAR_1
       rect:
         serializedVersion: 2
-        x: 326
-        y: 42
-        width: 289
-        height: 565
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 894
+        y: 246
+        width: 309
+        height: 604
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -159,12 +159,12 @@ TextureImporter:
       name: VIRGI BODYSPLASH - CAMINHAR_2
       rect:
         serializedVersion: 2
-        x: 646
-        y: 36
-        width: 287
-        height: 567
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1235
+        y: 239
+        width: 307
+        height: 606
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -181,12 +181,12 @@ TextureImporter:
       name: VIRGI BODYSPLASH - CAMINHAR_3
       rect:
         serializedVersion: 2
-        x: 960
-        y: 42
-        width: 289
-        height: 565
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1570
+        y: 246
+        width: 310
+        height: 604
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -203,12 +203,12 @@ TextureImporter:
       name: VIRGI BODYSPLASH - CAMINHAR_4
       rect:
         serializedVersion: 2
-        x: 1295
-        y: 26
-        width: 257
-        height: 579
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1928
+        y: 229
+        width: 275
+        height: 618
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -225,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: fb2f96c3b80124448bb32ca6397160c8
     internalID: 0
     vertices: []
     indices: 

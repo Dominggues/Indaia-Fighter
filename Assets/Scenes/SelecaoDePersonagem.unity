@@ -1647,7 +1647,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6315157059652510824, guid: a1ffeefe4e28f8c48a71fa13126cb946, type: 3}
+  m_Sprite: {fileID: -1541425014964260478, guid: 4cf6b7bc3a8cb4f4887b50005c149656, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1780,15 +1780,15 @@ MonoBehaviour:
   - {fileID: 1753998151}
   - {fileID: 792598237}
   artesGrandes:
-  - {fileID: -6315157059652510824, guid: a1ffeefe4e28f8c48a71fa13126cb946, type: 3}
-  - {fileID: 7855802167533862125, guid: b57089ed9e84c8247acce282d3f6259d, type: 3}
+  - {fileID: -6724839939113598663, guid: 3039970175506464f889fcd1fe64a47f, type: 3}
+  - {fileID: 3242291289585454668, guid: 30178188b4bdf704c9b4b3bd0a107583, type: 3}
   - {fileID: -4511814342028577462, guid: 1fe30f79a5d217b4f9db52c50a937cac, type: 3}
-  - {fileID: -1055848576014618925, guid: 6c1b68fcd1831d44aa81a507c3a654f5, type: 3}
-  - {fileID: -204310898181380874, guid: 3d85dfdf58f62f34ab19e86b9fcf412f, type: 3}
-  - {fileID: 8887911468908877335, guid: ed0d328ef3bda254a9f389318a89c10d, type: 3}
-  - {fileID: -1922018029142129325, guid: 4eb5eb2c859fdae428c96d47d7596c91, type: 3}
-  - {fileID: -830520995791483229, guid: 23bc2fbc142b6464a8f9306bb2074331, type: 3}
-  - {fileID: -8985796244502500541, guid: 72785ed0ff153d14c839d5e4b735669f, type: 3}
+  - {fileID: 1780701634281067755, guid: d2eef6d899916c54fb40352607c9c74f, type: 3}
+  - {fileID: -1914541680228380696, guid: 576a9f3397b0e224b8a2c8fbfcc6e44f, type: 3}
+  - {fileID: 5042353441312225264, guid: ef5bc8ada1efe774da30ade841ea0a80, type: 3}
+  - {fileID: 4216510845551548627, guid: c1209702ba6004d4b9cec07117e30cdf, type: 3}
+  - {fileID: 4139918535741333305, guid: 8260dbf8ae5a4a54bb9dd52d889ba935, type: 3}
+  - {fileID: -3598502332171846767, guid: 1c90fb74c06b51548a4bc57fa28a24a9, type: 3}
   nomesPersonagens:
   - MEYNEY JR
   - LIPE NETAO

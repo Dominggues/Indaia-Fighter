@@ -278,7 +278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &58718451
 Transform:
   m_ObjectHideFlags: 0
@@ -857,7 +857,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 30408856}
   m_HandleRect: {fileID: 0}
@@ -1274,8 +1274,8 @@ Transform:
   m_GameObject: {fileID: 544842450}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.88, y: -4.7, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 0.7535025}
+  m_LocalPosition: {x: -19.88, y: -14.26, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 0.7535025}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1455,7 +1455,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &908803143
 Transform:
   m_ObjectHideFlags: 0
@@ -1784,7 +1784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1189957998
 Transform:
   m_ObjectHideFlags: 0
@@ -1884,7 +1884,7 @@ Transform:
   m_GameObject: {fileID: 1236319378}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 20.08, y: -5.06, z: 0}
+  m_LocalPosition: {x: 20.08, y: -14.57, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 0.75350255}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2217,14 +2217,14 @@ MonoBehaviour:
   localSpawnP2: {fileID: 1236319381}
   personagensDisponiveis:
   - {fileID: 108590239737956308, guid: 2cb6fa3a71999c24b82a00c98cf65d66, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3334124234839881314, guid: 35e7bb4ae21aa3e47b1e1e00730008ec, type: 3}
+  - {fileID: 6467925195986518379, guid: 8a3c9387121bc1f49bb396dcc26c0856, type: 3}
+  - {fileID: 5988164272499366799, guid: 6e9ac44b853fa00498bfc4604e7c1050, type: 3}
+  - {fileID: 510999360058486760, guid: 0e07d50cfefdfab418e3297b22e326f7, type: 3}
+  - {fileID: 3428148120715446168, guid: eca08a6c47b9ae6458a60cf466262a03, type: 3}
+  - {fileID: 5250671888013185544, guid: 0926e58a96fa83440b590825a6f488ae, type: 3}
   - {fileID: 1689676139569825845, guid: 15cf8c920f9d994408f058195ee18296, type: 3}
-  - {fileID: 0}
+  - {fileID: 2412775643472549518, guid: 38299d5d79636874db781c84e96e276e, type: 3}
 --- !u!4 &1446717896
 Transform:
   m_ObjectHideFlags: 0
@@ -2292,7 +2292,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1809646898
 Transform:
   m_ObjectHideFlags: 0
@@ -2445,7 +2445,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 817714469}
   m_HandleRect: {fileID: 0}

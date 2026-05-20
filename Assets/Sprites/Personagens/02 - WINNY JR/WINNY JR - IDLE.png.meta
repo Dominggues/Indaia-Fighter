@@ -14,9 +14,6 @@ TextureImporter:
   - first:
       213: 788178661107686745
     second: WINNY JR - IDLE_3
-  - first:
-      213: -3484054486598256530
-    second: WINNY JR - IDLE_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -87,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -115,12 +112,12 @@ TextureImporter:
       name: WINNY JR - IDLE_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 78
-        width: 257
-        height: 589
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 734
+        y: 251
+        width: 269
+        height: 605
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -137,12 +134,12 @@ TextureImporter:
       name: WINNY JR - IDLE_1
       rect:
         serializedVersion: 2
-        x: 279
-        y: 78
-        width: 251
-        height: 582
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1063
+        y: 251
+        width: 287
+        height: 608
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -159,12 +156,12 @@ TextureImporter:
       name: WINNY JR - IDLE_2
       rect:
         serializedVersion: 2
-        x: 555
-        y: 78
-        width: 263
-        height: 582
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1408
+        y: 251
+        width: 282
+        height: 610
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -181,12 +178,12 @@ TextureImporter:
       name: WINNY JR - IDLE_3
       rect:
         serializedVersion: 2
-        x: 831
-        y: 77
-        width: 251
-        height: 596
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1764
+        y: 251
+        width: 272
+        height: 608
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,33 +196,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: WINNY JR - IDLE_4
-      rect:
-        serializedVersion: 2
-        x: 1089
-        y: 77
-        width: 269
-        height: 590
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e68743c57e626afc0800000000000000
-      internalID: -3484054486598256530
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: f712594e94c094048b3150dddd249bd2
     internalID: 0
     vertices: []
     indices: 
@@ -239,7 +214,6 @@ TextureImporter:
       WINNY JR - IDLE_1: -4385527551867994786
       WINNY JR - IDLE_2: -776326964701129287
       WINNY JR - IDLE_3: 788178661107686745
-      WINNY JR - IDLE_4: -3484054486598256530
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

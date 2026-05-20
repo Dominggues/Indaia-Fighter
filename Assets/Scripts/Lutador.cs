@@ -59,7 +59,7 @@ public class Lutador : MonoBehaviour
             if (Input.GetKey(KeyCode.A)) moveX = -1;
             if (Input.GetKey(KeyCode.D)) moveX = 1;
 
-            if (Input.GetKeyDown(KeyCode.W) && isGrounded) Jump();
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded) Jump();
         }
         else // Controles Player 2
         {

@@ -14,9 +14,6 @@ TextureImporter:
   - first:
       213: 1349857500108277739
     second: LIPE NETAO - IDLE_3
-  - first:
-      213: 410584556225360642
-    second: LIPE NETAO - IDLE_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,12 +112,12 @@ TextureImporter:
       name: LIPE NETAO - IDLE_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 78
-        width: 258
-        height: 588
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 723
+        y: 246
+        width: 273
+        height: 612
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -137,12 +134,12 @@ TextureImporter:
       name: LIPE NETAO - IDLE_1
       rect:
         serializedVersion: 2
-        x: 279
-        y: 77
-        width: 257
-        height: 583
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1097
+        y: 246
+        width: 268
+        height: 615
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -159,12 +156,12 @@ TextureImporter:
       name: LIPE NETAO - IDLE_2
       rect:
         serializedVersion: 2
-        x: 561
-        y: 78
-        width: 257
-        height: 589
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1401
+        y: 246
+        width: 283
+        height: 615
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -181,12 +178,12 @@ TextureImporter:
       name: LIPE NETAO - IDLE_3
       rect:
         serializedVersion: 2
-        x: 830
-        y: 77
-        width: 252
-        height: 585
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1773
+        y: 246
+        width: 274
+        height: 612
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,33 +196,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: LIPE NETAO - IDLE_4
-      rect:
-        serializedVersion: 2
-        x: 1089
-        y: 78
-        width: 268
-        height: 589
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 203f2108a70b2b500800000000000000
-      internalID: 410584556225360642
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1ba6c862b7e37ae4c990aac2d7e9a7a5
     internalID: 0
     vertices: []
     indices: 
@@ -239,7 +214,6 @@ TextureImporter:
       LIPE NETAO - IDLE_1: -5834101621955968826
       LIPE NETAO - IDLE_2: 2053779824184405973
       LIPE NETAO - IDLE_3: 1349857500108277739
-      LIPE NETAO - IDLE_4: 410584556225360642
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

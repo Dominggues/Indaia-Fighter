@@ -109,12 +109,12 @@ TextureImporter:
       name: VIRGI BODYSPLASH - SOCO_0
       rect:
         serializedVersion: 2
-        x: 73
-        y: 78
-        width: 450
-        height: 973
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 819
+        y: 183
+        width: 283
+        height: 610
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -131,12 +131,12 @@ TextureImporter:
       name: VIRGI BODYSPLASH - SOCO_1
       rect:
         serializedVersion: 2
-        x: 627
-        y: 78
-        width: 691
-        height: 971
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1166
+        y: 183
+        width: 433
+        height: 609
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -153,12 +153,12 @@ TextureImporter:
       name: VIRGI BODYSPLASH - SOCO_2
       rect:
         serializedVersion: 2
-        x: 1448
-        y: 78
-        width: 458
-        height: 973
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1679
+        y: 183
+        width: 288
+        height: 610
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -175,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f0da1811f49f90d41a8a0f54667c701f
     internalID: 0
     vertices: []
     indices: 

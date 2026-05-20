@@ -43,16 +43,19 @@ public class GerenciadorDaLuta : MonoBehaviour
         // 2. Faz o Player 1 nascer na posição do objeto P1
         if (idP1 < personagensDisponiveis.Length && personagensDisponiveis[idP1] != null)
         {
-            Instantiate(personagensDisponiveis[idP1], localSpawnP1.position, Quaternion.identity);
+            GameObject lutador1 = Instantiate(personagensDisponiveis[idP1], localSpawnP1.position, Quaternion.identity);
+            lutador1.GetComponent<Lutador>().isPlayer1 = true;
         }
 
         // 3. Faz o Player 2 nascer na posição do objeto P2 e vira ele para a esquerda!
         if (idP2 < personagensDisponiveis.Length && personagensDisponiveis[idP2] != null)
         {
             GameObject lutador2 = Instantiate(personagensDisponiveis[idP2], localSpawnP2.position, Quaternion.identity);
+            lutador2.GetComponent<Lutador>().isPlayer1 = false;
             
-            // Inverte a escala no X para ele olhar para a esquerda (encarando o P1)
-            lutador2.transform.localScale = new Vector3(-3, 3, 3);
+            // Inverte a escala no X para ele olhar para a esquerda (encarando o P1) sem ficar gigante!
+            Vector3 escalaOriginal = lutador2.transform.localScale;
+            lutador2.transform.localScale = new Vector3(-Mathf.Abs(escalaOriginal.x), escalaOriginal.y, escalaOriginal.z);
         }
     }
 }

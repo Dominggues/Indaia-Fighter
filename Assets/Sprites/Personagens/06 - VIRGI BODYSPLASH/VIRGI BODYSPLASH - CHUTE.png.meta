@@ -109,12 +109,12 @@ TextureImporter:
       name: VIRGI BODYSPLASH - CHUTE_0
       rect:
         serializedVersion: 2
-        x: 52
-        y: 31
-        width: 250
-        height: 569
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 776
+        y: 137
+        width: 270
+        height: 613
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -131,12 +131,12 @@ TextureImporter:
       name: VIRGI BODYSPLASH - CHUTE_1
       rect:
         serializedVersion: 2
-        x: 405
-        y: 38
-        width: 474
-        height: 568
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1156
+        y: 145
+        width: 510
+        height: 611
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -153,12 +153,12 @@ TextureImporter:
       name: VIRGI BODYSPLASH - CHUTE_2
       rect:
         serializedVersion: 2
-        x: 929
-        y: 31
-        width: 249
-        height: 569
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1719
+        y: 137
+        width: 268
+        height: 613
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -175,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5f544ead144b9e04080487a65defb14b
     internalID: 0
     vertices: []
     indices: 

@@ -14,9 +14,6 @@ TextureImporter:
   - first:
       213: -9010483472926907648
     second: ANOTTA - IDLE_3
-  - first:
-      213: -8146516946999446829
-    second: ANOTTA - IDLE_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,12 +112,12 @@ TextureImporter:
       name: ANOTTA - IDLE_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 77
-        width: 244
-        height: 582
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 724
+        y: 245
+        width: 270
+        height: 612
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -137,12 +134,12 @@ TextureImporter:
       name: ANOTTA - IDLE_1
       rect:
         serializedVersion: 2
-        x: 289
-        y: 77
-        width: 245
-        height: 579
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1059
+        y: 245
+        width: 290
+        height: 611
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -159,12 +156,12 @@ TextureImporter:
       name: ANOTTA - IDLE_2
       rect:
         serializedVersion: 2
-        x: 562
-        y: 76
-        width: 261
-        height: 587
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1421
+        y: 247
+        width: 272
+        height: 613
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -181,12 +178,12 @@ TextureImporter:
       name: ANOTTA - IDLE_3
       rect:
         serializedVersion: 2
-        x: 840
-        y: 77
-        width: 243
-        height: 581
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1771
+        y: 245
+        width: 270
+        height: 610
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,33 +196,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: ANOTTA - IDLE_4
-      rect:
-        serializedVersion: 2
-        x: 1089
-        y: 76
-        width: 262
-        height: 582
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3d2f561bff1c1fe80800000000000000
-      internalID: -8146516946999446829
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d5cc6c7850f326943941e924634d323a
     internalID: 0
     vertices: []
     indices: 
@@ -239,7 +214,6 @@ TextureImporter:
       ANOTTA - IDLE_1: 8722868359883307935
       ANOTTA - IDLE_2: -1555940581921939120
       ANOTTA - IDLE_3: -9010483472926907648
-      ANOTTA - IDLE_4: -8146516946999446829
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
