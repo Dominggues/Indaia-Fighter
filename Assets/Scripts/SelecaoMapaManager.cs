@@ -32,12 +32,20 @@ public class SelecaoMapaManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
         {
             Debug.Log("Mapa Escolhido: " + nomesMapas[indiceAtual]);
-            
+
             // Salva o ID do mapa no cérebro do jogo
             PlayerPrefs.SetInt("Mapa_Escolhido_ID", indiceAtual);
-            
+
             // Pula para a tela de Loading
             SceneManager.LoadScene("LoadingVersus");
+        }
+
+        // --- VOLTAR PARA A SELEÇÃO DE PERSONAGENS ---
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // ALERTA: Certifique-se de que o nome do ARQUIVO da sua cena 
+            // é exatamente "SelecaoPersonagemManager"
+            SceneManager.LoadScene("SelecaoDePersonagem");
         }
     }
 

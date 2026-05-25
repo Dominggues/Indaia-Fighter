@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2d645836a8cf1dc4fa283ea66dc1fa23
+guid: 3476ce4c9ad5bcd408e5c71cb653d9ce
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1220953048891351256
-    second: Unimax_0
+      213: 5550667995649651380
+    second: JULITT CACTO - BLOQUEIO_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Unimax_0
+      name: JULITT CACTO - BLOQUEIO_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1264
-        height: 842
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1266
+        y: 249
+        width: 258
+        height: 615
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 82f9661cbad4e0fe0800000000000000
-      internalID: -1220953048891351256
+      spriteID: 4b2b3d2222fe70d40800000000000000
+      internalID: 5550667995649651380
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e13ad05cf68aba84dac39f499f9db30f
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Unimax_0: -1220953048891351256
+      JULITT CACTO - BLOQUEIO_0: 5550667995649651380
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -2,20 +2,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 public class SelecaoPersonagemManager : MonoBehaviour
 {
     [Header("Configuração da Grade (3x3)")]
-    public RectTransform[] botoesPersonagens; 
-    public Sprite[] artesGrandes;             
-    public string[] nomesPersonagens;         
+    public RectTransform[] botoesPersonagens;
+    public Sprite[] artesGrandes;
+    public string[] nomesPersonagens;
 
     [Header("Player 1")]
     public RectTransform cursorP1;
     public Image imagemPreviewP1;
     public TextMeshProUGUI textoNomeP1; // <-- NOVO: Texto do nome do P1
     public bool p1Pronto = false;
-    private int indexP1 = 0; 
+    private int indexP1 = 0;
 
     [Header("Player 2")]
     public RectTransform cursorP2;
@@ -23,27 +23,27 @@ public class SelecaoPersonagemManager : MonoBehaviour
     public TextMeshProUGUI textoNomeP2; // <-- NOVO: Texto do nome do P2
     public bool p2Ativo = false;
     public bool p2Pronto = false;
-    private int indexP2 = 2; 
+    private int indexP2 = 2;
 
     [Header("Aviso P2 (Here Comes a New Challenger!)")]
-    public TextMeshProUGUI textoAvisoP2; 
-    public float velocidadePiscar = 3f;  
+    public TextMeshProUGUI textoAvisoP2;
+    public float velocidadePiscar = 3f;
 
-    private bool posicoesIniciaisAjustadas = false; 
+    private bool posicoesIniciaisAjustadas = false;
 
     void ForcarPosicaoInicial()
-        {
-            AtualizarTelaP1();
-        }
+    {
+        AtualizarTelaP1();
+    }
 
     void Start()
     {
         cursorP2.gameObject.SetActive(false);
-        imagemPreviewP2.color = new Color(0.2f, 0.2f, 0.2f, 1f); 
-        
+        imagemPreviewP2.color = new Color(0.2f, 0.2f, 0.2f, 1f);
+
         if (textoAvisoP2 != null) textoAvisoP2.gameObject.SetActive(true);
-        
-        if (textoNomeP2 != null) textoNomeP2.text = "???"; 
+
+        if (textoNomeP2 != null) textoNomeP2.text = "???";
 
         Invoke("ForcarPosicaoInicial", 0.1f);
     }
@@ -66,17 +66,27 @@ public class SelecaoPersonagemManager : MonoBehaviour
         // --- CONTROLES PLAYER 1 (WASD e Enter) ---
         if (!p1Pronto)
         {
-            if (Input.GetKeyDown(KeyCode.W)) MoverP1(-3); 
-            if (Input.GetKeyDown(KeyCode.S)) MoverP1(3);  
-            if (Input.GetKeyDown(KeyCode.A)) MoverP1(-1); 
-            if (Input.GetKeyDown(KeyCode.D)) MoverP1(1);  
+            if (Input.GetKeyDown(KeyCode.W)) MoverP1(-3);
+            if (Input.GetKeyDown(KeyCode.S)) MoverP1(3);
+            if (Input.GetKeyDown(KeyCode.A)) MoverP1(-1);
+            if (Input.GetKeyDown(KeyCode.D)) MoverP1(1);
 
             // P1 agora confirma com ENTER
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) 
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 p1Pronto = true;
-                imagemPreviewP1.color = Color.gray; 
+                imagemPreviewP1.color = Color.gray;
                 ChecarAmbosProntos();
+            }
+        }
+        else // --- DESELECIONAR PLAYER 1 ---
+        {
+            // Se o P1 já está pronto e aperta Backspace, ele cancela
+            if (Input.GetKeyDown(KeyCode.Backspace))
+            {
+                p1Pronto = false;
+                imagemPreviewP1.color = Color.white; // Volta a cor ao normal
+                Debug.Log("Player 1 cancelou a escolha!");
             }
         }
 
@@ -84,12 +94,12 @@ public class SelecaoPersonagemManager : MonoBehaviour
         if (!p2Ativo)
         {
             // P2 agora entra no jogo apertando M
-            if (Input.GetKeyDown(KeyCode.M)) 
+            if (Input.GetKeyDown(KeyCode.M))
             {
-                p2Ativo = true; 
+                p2Ativo = true;
                 cursorP2.gameObject.SetActive(true);
-                imagemPreviewP2.color = Color.white; 
-                
+                imagemPreviewP2.color = Color.white;
+
                 if (textoAvisoP2 != null) textoAvisoP2.gameObject.SetActive(false);
 
                 AtualizarTelaP2();
@@ -103,12 +113,28 @@ public class SelecaoPersonagemManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.RightArrow)) MoverP2(1);
 
             // P2 agora confirma com M
-            if (Input.GetKeyDown(KeyCode.M)) 
+            if (Input.GetKeyDown(KeyCode.M))
             {
                 p2Pronto = true;
                 imagemPreviewP2.color = Color.gray;
                 ChecarAmbosProntos();
             }
+        }
+        else // --- DESELECIONAR PLAYER 2 ---
+        {
+            // Se o P2 já está pronto e aperta o Shift Direito, ele cancela
+            if (Input.GetKeyDown(KeyCode.RightShift))
+            {
+                p2Pronto = false;
+                imagemPreviewP2.color = Color.white; // Volta a cor ao normal
+                Debug.Log("Player 2 cancelou a escolha!");
+            }
+        }
+
+        // --- VOLTAR PARA O MENU PRINCIPAL ---
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MenuPrincipal");
         }
     }
 
@@ -117,8 +143,8 @@ public class SelecaoPersonagemManager : MonoBehaviour
         int novoIndex = indexP1 + direcao;
         if (novoIndex >= 0 && novoIndex < botoesPersonagens.Length)
         {
-            if (direcao == 1 && indexP1 % 3 == 2) return;  
-            if (direcao == -1 && indexP1 % 3 == 0) return; 
+            if (direcao == 1 && indexP1 % 3 == 2) return;
+            if (direcao == -1 && indexP1 % 3 == 0) return;
 
             indexP1 = novoIndex;
             AtualizarTelaP1();
@@ -129,7 +155,7 @@ public class SelecaoPersonagemManager : MonoBehaviour
     {
         cursorP1.position = botoesPersonagens[indexP1].position;
         imagemPreviewP1.sprite = artesGrandes[indexP1];
-        
+
         // Atualiza o texto com o nome do personagem P1
         if (textoNomeP1 != null) textoNomeP1.text = nomesPersonagens[indexP1];
     }
@@ -139,7 +165,7 @@ public class SelecaoPersonagemManager : MonoBehaviour
         int novoIndex = indexP2 + direcao;
         if (novoIndex >= 0 && novoIndex < botoesPersonagens.Length)
         {
-            if (direcao == 1 && indexP2 % 3 == 2) return; 
+            if (direcao == 1 && indexP2 % 3 == 2) return;
             if (direcao == -1 && indexP2 % 3 == 0) return;
 
             indexP2 = novoIndex;
@@ -151,7 +177,7 @@ public class SelecaoPersonagemManager : MonoBehaviour
     {
         cursorP2.position = botoesPersonagens[indexP2].position;
         imagemPreviewP2.sprite = artesGrandes[indexP2];
-        
+
         // Atualiza o texto com o nome do personagem P2
         if (textoNomeP2 != null) textoNomeP2.text = nomesPersonagens[indexP2];
     }
@@ -162,7 +188,7 @@ public class SelecaoPersonagemManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("P1_Personagem_ID", indexP1);
             PlayerPrefs.SetInt("P2_Personagem_ID", indexP2);
-            SceneManager.LoadScene("SelecaoDeMapas"); 
+            SceneManager.LoadScene("SelecaoDeMapas");
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -5,22 +6,26 @@ using TMPro;
 public class Lutador : MonoBehaviour
 {
     [Header("Configuração de Player")]
-    public bool isPlayer1; // Marque no Inspector se for o P1
+    public bool isPlayer1; 
     public string nomeLutador;
-    // public LutaManager lutaManager; // Arraste o objeto Juiz aqui
 
     [Header("Movimentação")]
     public float speed = 5f;
     public float jumpForce = 10f;
     private Rigidbody2D rb;
     private Animator anim;
+    private SpriteRenderer sr; // <-- ADICIONADO: Para controlar a cor
     private bool isGrounded;
     private float moveX;
+
+    [Header("Estados do Lutador")]
+    public bool estaAbaixado = false;
+    public bool estaBloqueando = false;
 
     [Header("Sistema de Vida")]
     public int maxLife = 100;
     public int currentLife;
-    public Slider healthSlider; 
+    public Slider healthSlider;
 
     private bool morto = false;
 
@@ -28,6 +33,7 @@ public class Lutador : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>(); // <-- ADICIONADO: Puxa o SpriteRenderer
         currentLife = maxLife;
 
         if (healthSlider != null)
@@ -55,19 +61,35 @@ public class Lutador : MonoBehaviour
     {
         if (isPlayer1)
         {
-            moveX = 0;
-            if (Input.GetKey(KeyCode.A)) moveX = -1;
-            if (Input.GetKey(KeyCode.D)) moveX = 1;
+            estaAbaixado = Input.GetKey(KeyCode.S); 
+            anim.SetBool("estaAbaixando", estaAbaixado);
 
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded) Jump();
+            estaBloqueando = Input.GetKey(KeyCode.LeftShift);
+            anim.SetBool("estaBloqueando", estaBloqueando);
+
+            moveX = 0;
+            if (!estaAbaixado && !estaBloqueando)
+            {
+                if (Input.GetKey(KeyCode.A)) moveX = -1;
+                if (Input.GetKey(KeyCode.D)) moveX = 1;
+                if (Input.GetKeyDown(KeyCode.Space) && isGrounded) Jump();
+            }
         }
-        else // Controles Player 2
+        else 
         {
-            moveX = 0;
-            if (Input.GetKey(KeyCode.LeftArrow)) moveX = -1;
-            if (Input.GetKey(KeyCode.RightArrow)) moveX = 1;
+            estaAbaixado = Input.GetKey(KeyCode.PageDown);
+            anim.SetBool("estaAbaixando", estaAbaixado);
 
-            if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded) Jump();
+            estaBloqueando = Input.GetKey(KeyCode.RightShift);
+            anim.SetBool("estaBloqueando", estaBloqueando);
+
+            moveX = 0;
+            if (!estaAbaixado && !estaBloqueando)
+            {
+                if (Input.GetKey(KeyCode.LeftArrow)) moveX = -1;
+                if (Input.GetKey(KeyCode.RightArrow)) moveX = 1;
+                if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded) Jump();
+            }
         }
     }
 
@@ -75,7 +97,6 @@ public class Lutador : MonoBehaviour
     {
         rb.velocity = new Vector2(moveX * speed, rb.velocity.y);
 
-        // CORREÇÃO: Usando a Escala para virar o personagem de forma segura!
         if (moveX > 0)
         {
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
@@ -101,16 +122,17 @@ public class Lutador : MonoBehaviour
 
     void Ataques()
     {
-        // CORREÇÃO: Usando Triggers para facilitar a criação no Animator
+        if (estaBloqueando) return;
+
         if (isPlayer1)
         {
-            if (Input.GetKeyDown(KeyCode.F)) anim.SetTrigger("Soco"); 
-            if (Input.GetKeyDown(KeyCode.G)) anim.SetTrigger("Chute"); 
+            if (Input.GetKeyDown(KeyCode.F)) anim.SetTrigger("Soco");
+            if (Input.GetKeyDown(KeyCode.G)) anim.SetTrigger("Chute");
         }
-        else // Player 2
+        else 
         {
-            if (Input.GetKeyDown(KeyCode.K)) anim.SetTrigger("Soco"); 
-            if (Input.GetKeyDown(KeyCode.L)) anim.SetTrigger("Chute"); 
+            if (Input.GetKeyDown(KeyCode.K)) anim.SetTrigger("Soco");
+            if (Input.GetKeyDown(KeyCode.L)) anim.SetTrigger("Chute");
         }
     }
 
@@ -118,8 +140,15 @@ public class Lutador : MonoBehaviour
     {
         if (morto) return;
 
+        if (estaBloqueando)
+        {
+            damage = damage / 2; 
+        }
+
         currentLife -= damage;
         if (healthSlider != null) healthSlider.value = currentLife;
+        
+        StartCoroutine(PiscarVermelho()); // <-- ADICIONADO: Chama a animação de piscar
 
         if (currentLife <= 0)
         {
@@ -128,16 +157,31 @@ public class Lutador : MonoBehaviour
         }
     }
 
+    // <-- ADICIONADO: Sistema que faz o boneco ficar vermelho por 0.15 segundos
+    IEnumerator PiscarVermelho()
+    {
+        sr.color = Color.red;
+        yield return new WaitForSeconds(0.15f);
+        sr.color = Color.white;
+    }
+
     void Die()
     {
         morto = true;
-        anim.SetTrigger("Die"); 
-        //lutaManager.VerificarVencedor(this);
+        anim.SetTrigger("Morte");
+        rb.velocity = Vector2.zero;
+        this.enabled = false; 
+    }
+
+    public void ComemorarVitoria()
+    {
+        anim.SetTrigger("Vitoria");
+        rb.velocity = Vector2.zero;
+        this.enabled = false; 
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // ATENÇÃO: Confirme se o seu chão tem a Tag "Ground" certinho com letra maiúscula!
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
