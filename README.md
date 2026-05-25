@@ -35,10 +35,10 @@ O jogo foca na fidelidade visual através da Pixel Art, transformando pontos tur
 
 ## 🚀 Funcionalidades Planejadas
 
-- [x] Movimentação básica e ataques (Soco/Chute).
-- [ ] Sistema de combos e especiais (Hadouken Indaiatubano?).
-- [ ] Modo Multiplayer Local (PvP).
-- [ ] Seleção de personagens baseados em figuras locais.
+- [x] Movimentação básica e ataques (Soco, Chute,Pular, Andar).
+- [ ] Sistema de combos e especiais.
+- [x] Modo Multiplayer Local (PvP).
+- [x] Seleção de personagens.
 - [ ] Músicas e Efeitos sonoros.
 
 ## 🛠️ Tecnologias
