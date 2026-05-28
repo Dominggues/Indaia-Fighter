@@ -44,7 +44,6 @@ public class Lutador : MonoBehaviour
         posicaoInicial = transform.position;
 
         if (audioSourceLutador == null) audioSourceLutador = GetComponent<AudioSource>();
-
     }
 
     public void ConfigurarUIInicial()
@@ -74,9 +73,8 @@ public class Lutador : MonoBehaviour
         }
     }
 
-   void Update()
+    void Update()
     {
-        // Se estiver morto OU o jogo estiver pausado (Time.timeScale == 0), ignora os botões!
         if (morto || Time.timeScale == 0f) return; 
         
         InputsJogador();
@@ -85,7 +83,6 @@ public class Lutador : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Se estiver morto OU o jogo estiver pausado, não se move!
         if (morto || Time.timeScale == 0f) return;
         
         Mover();
@@ -93,34 +90,27 @@ public class Lutador : MonoBehaviour
 
     void InputsJogador()
     {
-        if (isPlayer1)
-        {
-            estaAbaixado = Input.GetKey(KeyCode.S); 
-            if (anim != null) anim.SetBool("estaAbaixando", estaAbaixado);
-            estaBloqueando = Input.GetKey(KeyCode.LeftShift);
-            if (anim != null) anim.SetBool("estaBloqueando", estaBloqueando);
+        // Define o sufixo automaticamente (_P1 ou _P2)
+        string sufixo = isPlayer1 ? "_P1" : "_P2";
 
-            moveX = 0;
-            if (!estaAbaixado && !estaBloqueando)
-            {
-                if (Input.GetKey(KeyCode.A)) moveX = -1;
-                if (Input.GetKey(KeyCode.D)) moveX = 1;
-                if (Input.GetKeyDown(KeyCode.Space) && isGrounded) Jump();
-            }
-        }
-        else 
-        {
-            estaAbaixado = Input.GetKey(KeyCode.DownArrow);
-            if (anim != null) anim.SetBool("estaAbaixando", estaAbaixado);
-            estaBloqueando = Input.GetKey(KeyCode.RightShift);
-            if (anim != null) anim.SetBool("estaBloqueando", estaBloqueando);
+        // ABAIXAR: Se o analógico/D-pad estiver para baixo (Eixo vertical negativo)
+        estaAbaixado = Input.GetAxisRaw("Vertical" + sufixo) < -0.5f; 
+        if (anim != null) anim.SetBool("estaAbaixando", estaAbaixado);
 
-            moveX = 0;
-            if (!estaAbaixado && !estaBloqueando)
+        // BLOQUEIO: Lendo o botão segurado (L1 configurado no Input Manager)
+        estaBloqueando = Input.GetButton("Bloqueio" + sufixo);
+        if (anim != null) anim.SetBool("estaBloqueando", estaBloqueando);
+
+        moveX = 0;
+        if (!estaAbaixado && !estaBloqueando)
+        {
+            // MOVIMENTO HORIZONTAL
+            moveX = Input.GetAxisRaw("Horizontal" + sufixo);
+
+            // PULAR (Botão X do controle mapeado no Input Manager)
+            if (Input.GetButtonDown("Pular" + sufixo) && isGrounded) 
             {
-                if (Input.GetKey(KeyCode.LeftArrow)) moveX = -1;
-                if (Input.GetKey(KeyCode.RightArrow)) moveX = 1;
-                if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded) Jump();
+                Jump();
             }
         }
     }
@@ -166,15 +156,17 @@ public class Lutador : MonoBehaviour
     {
         if (estaBloqueando) return;
 
-        if (isPlayer1)
+        string sufixo = isPlayer1 ? "_P1" : "_P2";
+
+        // SOCO (Quadrado) e CHUTE (Círculo) via Input Manager
+        if (Input.GetButtonDown("Soco" + sufixo)) 
         {
-            if (Input.GetKeyDown(KeyCode.F)) if (anim != null) anim.SetTrigger("Soco");
-            if (Input.GetKeyDown(KeyCode.G)) if (anim != null) anim.SetTrigger("Chute");
+            if (anim != null) anim.SetTrigger("Soco");
         }
-        else 
+        
+        if (Input.GetButtonDown("Chute" + sufixo)) 
         {
-            if (Input.GetKeyDown(KeyCode.K)) if (anim != null) anim.SetTrigger("Soco");
-            if (Input.GetKeyDown(KeyCode.L)) if (anim != null) anim.SetTrigger("Chute");
+            if (anim != null) anim.SetTrigger("Chute");
         }
     }
 
@@ -182,15 +174,11 @@ public class Lutador : MonoBehaviour
     {
         if (morto) return;
 
-        if (estaBloqueando) 
-        {
-            damage = 0; 
-        }
+        if (estaBloqueando) damage = 0; 
 
         currentLife -= damage;
         if (healthSlider != null) healthSlider.value = currentLife;
         
-        // TOCA O SOM DE IMPACTO SE LEVOU DANO!
         if (damage > 0) 
         {
             StartCoroutine(PiscarVermelho());

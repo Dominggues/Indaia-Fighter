@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.SceneManagement;
+
 public class SelecaoPersonagemManager : MonoBehaviour
 {
     [Header("Configuração da Grade (3x3)")]
@@ -13,14 +13,14 @@ public class SelecaoPersonagemManager : MonoBehaviour
     [Header("Player 1")]
     public RectTransform cursorP1;
     public Image imagemPreviewP1;
-    public TextMeshProUGUI textoNomeP1; // <-- NOVO: Texto do nome do P1
+    public TextMeshProUGUI textoNomeP1;
     public bool p1Pronto = false;
     private int indexP1 = 0;
 
     [Header("Player 2")]
     public RectTransform cursorP2;
     public Image imagemPreviewP2;
-    public TextMeshProUGUI textoNomeP2; // <-- NOVO: Texto do nome do P2
+    public TextMeshProUGUI textoNomeP2;
     public bool p2Ativo = false;
     public bool p2Pronto = false;
     private int indexP2 = 2;
@@ -31,10 +31,11 @@ public class SelecaoPersonagemManager : MonoBehaviour
 
     private bool posicoesIniciaisAjustadas = false;
 
-    void ForcarPosicaoInicial()
-    {
-        AtualizarTelaP1();
-    }
+    // Variáveis para evitar que o cursor "voe" muito rápido com o analógico/setas
+    private bool p1AxisH_EmUso = false;
+    private bool p1AxisV_EmUso = false;
+    private bool p2AxisH_EmUso = false;
+    private bool p2AxisV_EmUso = false;
 
     void Start()
     {
@@ -42,10 +43,14 @@ public class SelecaoPersonagemManager : MonoBehaviour
         imagemPreviewP2.color = new Color(0.2f, 0.2f, 0.2f, 1f);
 
         if (textoAvisoP2 != null) textoAvisoP2.gameObject.SetActive(true);
-
         if (textoNomeP2 != null) textoNomeP2.text = "???";
 
         Invoke("ForcarPosicaoInicial", 0.1f);
+    }
+
+    void ForcarPosicaoInicial()
+    {
+        AtualizarTelaP1();
     }
 
     void Update()
@@ -56,6 +61,7 @@ public class SelecaoPersonagemManager : MonoBehaviour
             posicoesIniciaisAjustadas = true;
         }
 
+        // Piscar o texto do "Here Comes a New Challenger"
         if (!p2Ativo && textoAvisoP2 != null)
         {
             Color cor = textoAvisoP2.color;
@@ -63,38 +69,44 @@ public class SelecaoPersonagemManager : MonoBehaviour
             textoAvisoP2.color = cor;
         }
 
-        // --- CONTROLES PLAYER 1 (WASD e Enter) ---
+        // --- CONTROLES PLAYER 1 ---
         if (!p1Pronto)
         {
-            if (Input.GetKeyDown(KeyCode.W)) MoverP1(-3);
-            if (Input.GetKeyDown(KeyCode.S)) MoverP1(3);
-            if (Input.GetKeyDown(KeyCode.A)) MoverP1(-1);
-            if (Input.GetKeyDown(KeyCode.D)) MoverP1(1);
+            // Movimentação Vertical P1
+            float v1 = Input.GetAxisRaw("Vertical_P1");
+            if (v1 > 0.5f && !p1AxisV_EmUso) { MoverP1(-3); p1AxisV_EmUso = true; } // Cima
+            else if (v1 < -0.5f && !p1AxisV_EmUso) { MoverP1(3); p1AxisV_EmUso = true; } // Baixo
+            else if (v1 > -0.5f && v1 < 0.5f) { p1AxisV_EmUso = false; }
 
-            // P1 agora confirma com ENTER
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            // Movimentação Horizontal P1
+            float h1 = Input.GetAxisRaw("Horizontal_P1");
+            if (h1 > 0.5f && !p1AxisH_EmUso) { MoverP1(1); p1AxisH_EmUso = true; } // Direita
+            else if (h1 < -0.5f && !p1AxisH_EmUso) { MoverP1(-1); p1AxisH_EmUso = true; } // Esquerda
+            else if (h1 > -0.5f && h1 < 0.5f) { p1AxisH_EmUso = false; }
+
+            // P1 confirma com o botão de Soco
+            if (Input.GetButtonDown("Soco_P1"))
             {
                 p1Pronto = true;
                 imagemPreviewP1.color = Color.gray;
                 ChecarAmbosProntos();
             }
         }
-        else // --- DESELECIONAR PLAYER 1 ---
+        else 
         {
-            // Se o P1 já está pronto e aperta Backspace, ele cancela
-            if (Input.GetKeyDown(KeyCode.Backspace))
+            // P1 cancela com o botão de Chute
+            if (Input.GetButtonDown("Chute_P1"))
             {
                 p1Pronto = false;
-                imagemPreviewP1.color = Color.white; // Volta a cor ao normal
-                Debug.Log("Player 1 cancelou a escolha!");
+                imagemPreviewP1.color = Color.white;
             }
         }
 
-        // --- CONTROLES PLAYER 2 (Setinhas e M) ---
+        // --- CONTROLES PLAYER 2 ---
         if (!p2Ativo)
         {
-            // P2 agora entra no jogo apertando M
-            if (Input.GetKeyDown(KeyCode.M))
+            // P2 entra no jogo apertando o START (Options no PS4)
+            if (Input.GetButtonDown("Start_P2"))
             {
                 p2Ativo = true;
                 cursorP2.gameObject.SetActive(true);
@@ -107,31 +119,38 @@ public class SelecaoPersonagemManager : MonoBehaviour
         }
         else if (!p2Pronto)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow)) MoverP2(-3);
-            if (Input.GetKeyDown(KeyCode.DownArrow)) MoverP2(3);
-            if (Input.GetKeyDown(KeyCode.LeftArrow)) MoverP2(-1);
-            if (Input.GetKeyDown(KeyCode.RightArrow)) MoverP2(1);
+            // Movimentação Vertical P2
+            float v2 = Input.GetAxisRaw("Vertical_P2");
+            if (v2 > 0.5f && !p2AxisV_EmUso) { MoverP2(-3); p2AxisV_EmUso = true; } 
+            else if (v2 < -0.5f && !p2AxisV_EmUso) { MoverP2(3); p2AxisV_EmUso = true; } 
+            else if (v2 > -0.5f && v2 < 0.5f) { p2AxisV_EmUso = false; }
 
-            // P2 agora confirma com M
-            if (Input.GetKeyDown(KeyCode.M))
+            // Movimentação Horizontal P2
+            float h2 = Input.GetAxisRaw("Horizontal_P2");
+            if (h2 > 0.5f && !p2AxisH_EmUso) { MoverP2(1); p2AxisH_EmUso = true; } 
+            else if (h2 < -0.5f && !p2AxisH_EmUso) { MoverP2(-1); p2AxisH_EmUso = true; } 
+            else if (h2 > -0.5f && h2 < 0.5f) { p2AxisH_EmUso = false; }
+
+            // P2 confirma com o botão de Soco
+            if (Input.GetButtonDown("Soco_P2"))
             {
                 p2Pronto = true;
                 imagemPreviewP2.color = Color.gray;
                 ChecarAmbosProntos();
             }
         }
-        else // --- DESELECIONAR PLAYER 2 ---
+        else 
         {
-            // Se o P2 já está pronto e aperta o Shift Direito, ele cancela
-            if (Input.GetKeyDown(KeyCode.RightShift))
+            // P2 cancela com o botão de Chute
+            if (Input.GetButtonDown("Chute_P2"))
             {
                 p2Pronto = false;
-                imagemPreviewP2.color = Color.white; // Volta a cor ao normal
-                Debug.Log("Player 2 cancelou a escolha!");
+                imagemPreviewP2.color = Color.white;
             }
         }
 
         // --- VOLTAR PARA O MENU PRINCIPAL ---
+        // Mantive o Escape do teclado como segurança
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("MenuPrincipal");
@@ -155,8 +174,6 @@ public class SelecaoPersonagemManager : MonoBehaviour
     {
         cursorP1.position = botoesPersonagens[indexP1].position;
         imagemPreviewP1.sprite = artesGrandes[indexP1];
-
-        // Atualiza o texto com o nome do personagem P1
         if (textoNomeP1 != null) textoNomeP1.text = nomesPersonagens[indexP1];
     }
 
@@ -177,8 +194,6 @@ public class SelecaoPersonagemManager : MonoBehaviour
     {
         cursorP2.position = botoesPersonagens[indexP2].position;
         imagemPreviewP2.sprite = artesGrandes[indexP2];
-
-        // Atualiza o texto com o nome do personagem P2
         if (textoNomeP2 != null) textoNomeP2.text = nomesPersonagens[indexP2];
     }
 
