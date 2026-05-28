@@ -34,7 +34,7 @@ public class LoadingManager : MonoBehaviour
         
         if (textoNomeMapa != null) 
         {
-            textoNomeMapa.text = "LOCAL: " + nomesMapas[idMapa];
+            textoNomeMapa.text = nomesMapas[idMapa];
         }
 
         Invoke("IrParaLuta", tempoDeLoading);

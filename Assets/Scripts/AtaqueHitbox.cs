@@ -3,22 +3,44 @@ using UnityEngine;
 public class AtaqueHitbox : MonoBehaviour
 {
     public int danoDoAtaque = 10;
-    public bool pertenceAoPlayer1; // Para ele não bater nele mesmo
+    private Lutador meuLutador;
+    private bool jaDeuDano = false;
+    private Collider2D meuColisor;
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void Start()
     {
-        // Verifica se bateu em um lutador
+        meuLutador = GetComponentInParent<Lutador>();
+        meuColisor = GetComponent<Collider2D>();
+    }
+
+    void Update()
+    {
+        // Se a animação desligar o colisor ou o objeto, reseta a trava do soco!
+        if (meuColisor != null && !meuColisor.enabled)
+        {
+            jaDeuDano = false;
+        }
+    }
+
+    void OnEnable()
+    {
+        jaDeuDano = false; // Garante o reset também caso o GameObject seja desativado
+    }
+
+    // Usamos OnTriggerStay2D no lugar de Enter2D. 
+    // Assim, se o soco ligar enquanto eles estão parados grudados, funciona!
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if (jaDeuDano) return; 
+
         Lutador lutadorAtingido = collision.GetComponent<Lutador>();
 
-        if (lutadorAtingido != null)
+        if (lutadorAtingido != null && meuLutador != null)
         {
-            // Verifica se o lutador atingido NÃO é o dono do ataque
-            if (lutadorAtingido.isPlayer1 != pertenceAoPlayer1)
+            if (lutadorAtingido.isPlayer1 != meuLutador.isPlayer1)
             {
                 lutadorAtingido.TakeDamage(danoDoAtaque);
-                
-                // Desliga a hitbox imediatamente após acertar para não dar dano duplo
-                gameObject.SetActive(false); 
+                jaDeuDano = true; 
             }
         }
     }
