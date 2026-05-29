@@ -137,7 +137,7 @@ public class Lutador : MonoBehaviour
             }
         }
 
-        rb.velocity = new Vector2(movimentoFinal * speed, rb.velocity.y);
+        rb.linearVelocity = new Vector2(movimentoFinal * speed, rb.linearVelocity.y);
 
         if (moveX > 0)
         {
@@ -157,7 +157,7 @@ public class Lutador : MonoBehaviour
 
     void Jump()
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         if (anim != null) anim.SetBool("IsJump", true);
         isGrounded = false;
     }
@@ -217,7 +217,7 @@ public class Lutador : MonoBehaviour
     void Die()
     {
         morto = true;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
         Collider2D colisorPrincipal = GetComponent<Collider2D>();
@@ -241,7 +241,7 @@ public class Lutador : MonoBehaviour
     public void ComemorarVitoria()
     {
         if (anim != null) anim.SetTrigger("Vitoria");
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         this.enabled = false; 
     }
 
@@ -253,7 +253,7 @@ public class Lutador : MonoBehaviour
         
         transform.position = posicaoInicial;
         
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         
