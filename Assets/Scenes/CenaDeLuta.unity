@@ -2536,6 +2536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 532372137}
   - component: {fileID: 532372136}
+  - component: {fileID: 532372138}
   m_Layer: 0
   m_Name: GerenciadorPause
   m_TagString: Untagged
@@ -2572,6 +2573,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &532372138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532372135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 740fb1923b2b2ef4fa314cd58a1f8054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GerenciadorNavegacaoUI
+  botaoFocoPadrao: {fileID: 169834998}
 --- !u!1 &544842450
 GameObject:
   m_ObjectHideFlags: 0
@@ -5044,6 +5058,7 @@ GameObject:
   - component: {fileID: 1446717896}
   - component: {fileID: 1446717895}
   - component: {fileID: 1446717897}
+  - component: {fileID: 1446717898}
   m_Layer: 0
   m_Name: Controlador_Luta
   m_TagString: Untagged
@@ -5193,6 +5208,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1446717898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446717894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 740fb1923b2b2ef4fa314cd58a1f8054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GerenciadorNavegacaoUI
+  botaoFocoPadrao: {fileID: 1216686763}
 --- !u!1 &1447680853
 GameObject:
   m_ObjectHideFlags: 0
