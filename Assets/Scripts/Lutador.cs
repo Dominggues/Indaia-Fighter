@@ -100,69 +100,46 @@ public class Lutador : MonoBehaviour
 
     void InputsJogador()
     {
-        if (isPlayer1)
+        int meuJoystick = isPlayer1 ? GerenciadorControles.JoystickP1 : GerenciadorControles.JoystickP2;
+        string prefixoEixo = isPlayer1 ? "P1" : "P2";
+
+        float lyEixo    = Input.GetAxisRaw($"PS4_LY_{prefixoEixo}");
+        float dpadYEixo = Input.GetAxisRaw($"PS4_DpadY_{prefixoEixo}");
+        bool abaixadoControle   = (lyEixo > 0.5f) || (dpadYEixo > 0.5f);
+        bool bloqueandoControle = Input.GetKey($"joystick {meuJoystick} button 4");
+
+        bool abaixadoTeclado   = isPlayer1 ? Input.GetKey(KeyCode.S)         : Input.GetKey(KeyCode.DownArrow);
+        bool bloqueandoTeclado = isPlayer1 ? Input.GetKey(KeyCode.LeftShift)  : Input.GetKey(KeyCode.RightShift);
+
+        estaAbaixado   = abaixadoTeclado   || abaixadoControle;
+        estaBloqueando = bloqueandoTeclado || bloqueandoControle;
+
+        if (anim != null) anim.SetBool("estaAbaixando",  estaAbaixado);
+        if (anim != null) anim.SetBool("estaBloqueando", estaBloqueando);
+
+        moveX = 0;
+        if (!estaAbaixado && !estaBloqueando)
         {
-            bool abaixadoTeclado   = Input.GetKey(KeyCode.S);
-            bool bloqueandoTeclado = Input.GetKey(KeyCode.LeftShift);
-
-            float lyP1    = Input.GetAxisRaw("PS4_LY_P1");
-            float dpadYP1 = Input.GetAxisRaw("PS4_DpadY_P1");
-            bool abaixadoControle   = (lyP1 > 0.5f) || (dpadYP1 > 0.5f);
-            bool bloqueandoControle = Input.GetKey("joystick 1 button 4");
-
-            estaAbaixado   = abaixadoTeclado   || abaixadoControle;
-            estaBloqueando = bloqueandoTeclado || bloqueandoControle;
-
-            if (anim != null) anim.SetBool("estaAbaixando",  estaAbaixado);
-            if (anim != null) anim.SetBool("estaBloqueando", estaBloqueando);
-
-            moveX = 0;
-            if (!estaAbaixado && !estaBloqueando)
+            if (isPlayer1)
             {
                 if (Input.GetKey(KeyCode.A)) moveX = -1;
                 if (Input.GetKey(KeyCode.D)) moveX =  1;
                 if (Input.GetKeyDown(KeyCode.Space) && isGrounded) Jump();
-
-                float lxP1    = Input.GetAxisRaw("PS4_LX_P1");
-                float dpadXP1 = Input.GetAxisRaw("PS4_DpadX_P1");
-                float eixoH   = (Mathf.Abs(lxP1) > Mathf.Abs(dpadXP1)) ? lxP1 : dpadXP1;
-
-                if (Mathf.Abs(eixoH) > 0.3f) moveX = Mathf.Sign(eixoH);
-
-                if (Input.GetKeyDown("joystick 1 button 1") && isGrounded) Jump();
             }
-        }
-        else
-        {
-            bool abaixadoTeclado   = Input.GetKey(KeyCode.DownArrow);
-            bool bloqueandoTeclado = Input.GetKey(KeyCode.RightShift);
-
-            float lyP2    = Input.GetAxisRaw("PS4_LY_P2");
-            float dpadYP2 = Input.GetAxisRaw("PS4_DpadY_P2");
-            bool abaixadoControle   = (lyP2 > 0.5f) || (dpadYP2 > 0.5f);
-            bool bloqueandoControle = Input.GetKey("joystick 2 button 4");
-
-            estaAbaixado   = abaixadoTeclado   || abaixadoControle;
-            estaBloqueando = bloqueandoTeclado || bloqueandoControle;
-
-            if (anim != null) anim.SetBool("estaAbaixando",  estaAbaixado);
-            if (anim != null) anim.SetBool("estaBloqueando", estaBloqueando);
-
-            moveX = 0;
-            if (!estaAbaixado && !estaBloqueando)
+            else
             {
                 if (Input.GetKey(KeyCode.LeftArrow))  moveX = -1;
                 if (Input.GetKey(KeyCode.RightArrow)) moveX =  1;
                 if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded) Jump();
-
-                float lxP2    = Input.GetAxisRaw("PS4_LX_P2");
-                float dpadXP2 = Input.GetAxisRaw("PS4_DpadX_P2");
-                float eixoH   = (Mathf.Abs(lxP2) > Mathf.Abs(dpadXP2)) ? lxP2 : dpadXP2;
-
-                if (Mathf.Abs(eixoH) > 0.3f) moveX = Mathf.Sign(eixoH);
-
-                if (Input.GetKeyDown("joystick 2 button 1") && isGrounded) Jump();
             }
+
+            float lxEixo    = Input.GetAxisRaw($"PS4_LX_{prefixoEixo}");
+            float dpadXEixo = Input.GetAxisRaw($"PS4_DpadX_{prefixoEixo}");
+            float eixoH     = (Mathf.Abs(lxEixo) > Mathf.Abs(dpadXEixo)) ? lxEixo : dpadXEixo;
+
+            if (Mathf.Abs(eixoH) > 0.3f) moveX = Mathf.Sign(eixoH);
+
+            if (Input.GetKeyDown($"joystick {meuJoystick} button 1") && isGrounded) Jump();
         }
     }
 
@@ -212,22 +189,21 @@ public class Lutador : MonoBehaviour
     {
         if (estaBloqueando) return;
 
+        int meuJoystick = isPlayer1 ? GerenciadorControles.JoystickP1 : GerenciadorControles.JoystickP2;
+
         if (isPlayer1)
         {
             if (Input.GetKeyDown(KeyCode.F)) if (anim != null) anim.SetTrigger("Soco");
             if (Input.GetKeyDown(KeyCode.G)) if (anim != null) anim.SetTrigger("Chute");
-
-            if (Input.GetKeyDown("joystick 1 button 0")) if (anim != null) anim.SetTrigger("Soco");
-            if (Input.GetKeyDown("joystick 1 button 2")) if (anim != null) anim.SetTrigger("Chute");
         }
         else
         {
             if (Input.GetKeyDown(KeyCode.K)) if (anim != null) anim.SetTrigger("Soco");
             if (Input.GetKeyDown(KeyCode.L)) if (anim != null) anim.SetTrigger("Chute");
-
-            if (Input.GetKeyDown("joystick 2 button 0")) if (anim != null) anim.SetTrigger("Soco");
-            if (Input.GetKeyDown("joystick 2 button 2")) if (anim != null) anim.SetTrigger("Chute");
         }
+
+        if (Input.GetKeyDown($"joystick {meuJoystick} button 0")) if (anim != null) anim.SetTrigger("Soco");
+        if (Input.GetKeyDown($"joystick {meuJoystick} button 2")) if (anim != null) anim.SetTrigger("Chute");
     }
 
     public void TakeDamage(int damage, Vector2 posicaoDoAtacante)

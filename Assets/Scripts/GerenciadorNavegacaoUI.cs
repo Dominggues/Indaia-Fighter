@@ -2,25 +2,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-/// <summary>
-/// Coloca em qualquer GameObject das cenas que têm menu de UI:
-/// MenuPrincipal, Pause (no mesmo objeto do GerenciadorPause),
-/// e tela de Vitória (no mesmo objeto do ControladorLuta).
-///
-/// Resolve dois problemas:
-/// 1. D-pad navega pelos botões de UI (igual ao analógico)
-/// 2. Mouse não rouba o foco — ao mexer no controle o foco volta
-/// </summary>
 public class GerenciadorNavegacaoUI : MonoBehaviour
 {
     [Tooltip("Botão que deve ter o foco inicial/padrão da tela")]
     public GameObject botaoFocoPadrao;
 
-    // --- anti-repetição do eixo D-pad ---
     private bool dpadVUsado = false;
     private bool dpadHUsado = false;
-
-    // Guarda o último objeto selecionado pelo controle
     private GameObject ultimoSelecionado;
 
     void Start()
@@ -31,49 +19,45 @@ public class GerenciadorNavegacaoUI : MonoBehaviour
 
     void Update()
     {
-        // ── Lê D-pad de ambos os jogadores ──────────────────────────
-        float dpadY = Mathf.Abs(Input.GetAxisRaw("PS4_DpadY_P1")) > 0.5f
-                    ? Input.GetAxisRaw("PS4_DpadY_P1")
-                    : Input.GetAxisRaw("PS4_DpadY_P2");
+        int j1 = GerenciadorControles.JoystickP1;
+        int j2 = GerenciadorControles.JoystickP2;
 
-        float dpadX = Mathf.Abs(Input.GetAxisRaw("PS4_DpadX_P1")) > 0.5f
-                    ? Input.GetAxisRaw("PS4_DpadX_P1")
-                    : Input.GetAxisRaw("PS4_DpadX_P2");
+        // Lê D-pad de ambos — usa o que tiver valor mais forte
+        float dpadYP1 = Input.GetAxisRaw("PS4_DpadY_P1");
+        float dpadYP2 = Input.GetAxisRaw("PS4_DpadY_P2");
+        float dpadXP1 = Input.GetAxisRaw("PS4_DpadX_P1");
+        float dpadXP2 = Input.GetAxisRaw("PS4_DpadX_P2");
+
+        float dpadY = Mathf.Abs(dpadYP1) >= Mathf.Abs(dpadYP2) ? dpadYP1 : dpadYP2;
+        float dpadX = Mathf.Abs(dpadXP1) >= Mathf.Abs(dpadXP2) ? dpadXP1 : dpadXP2;
 
         bool usouControle = false;
 
-        // ── Navegação vertical com D-pad ────────────────────────────
+        // Navegação vertical
         if (Mathf.Abs(dpadY) > 0.5f)
         {
             if (!dpadVUsado)
             {
-                // dpadY > 0 = cima (Invert marcado), envia Navigate Up
-                // dpadY < 0 = baixo, envia Navigate Down
-                NavegaUI(dpadY > 0
-                    ? MoveDirection.Down
-                    : MoveDirection.Up);
+                NavegaUI(dpadY > 0 ? MoveDirection.Down : MoveDirection.Up);
                 dpadVUsado = true;
                 usouControle = true;
             }
         }
         else { dpadVUsado = false; }
 
-        // ── Navegação horizontal com D-pad ──────────────────────────
+        // Navegação horizontal
         if (Mathf.Abs(dpadX) > 0.5f)
         {
             if (!dpadHUsado)
             {
-                NavegaUI(dpadX > 0
-                    ? MoveDirection.Right
-                    : MoveDirection.Left);
+                NavegaUI(dpadX > 0 ? MoveDirection.Right : MoveDirection.Left);
                 dpadHUsado = true;
                 usouControle = true;
             }
         }
         else { dpadHUsado = false; }
 
-        // ── Detecta qualquer input de controle (analógico ou botão) ─
-        // para recuperar foco se o mouse tiver roubado
+        // Detecta qualquer input de controle para recuperar foco
         float lyP1 = Input.GetAxisRaw("PS4_LY_P1");
         float lxP1 = Input.GetAxisRaw("PS4_LX_P1");
         float lyP2 = Input.GetAxisRaw("PS4_LY_P2");
@@ -83,28 +67,23 @@ public class GerenciadorNavegacaoUI : MonoBehaviour
                            || Mathf.Abs(lxP2) > 0.3f || Mathf.Abs(lyP2) > 0.3f;
 
         bool botaoPressionado =
-            Input.GetKeyDown("joystick 1 button 0") ||
-            Input.GetKeyDown("joystick 1 button 1") ||
-            Input.GetKeyDown("joystick 1 button 2") ||
-            Input.GetKeyDown("joystick 2 button 0") ||
-            Input.GetKeyDown("joystick 2 button 1") ||
-            Input.GetKeyDown("joystick 2 button 2");
+            Input.GetKeyDown($"joystick {j1} button 0") ||
+            Input.GetKeyDown($"joystick {j1} button 1") ||
+            Input.GetKeyDown($"joystick {j1} button 2") ||
+            Input.GetKeyDown($"joystick {j2} button 0") ||
+            Input.GetKeyDown($"joystick {j2} button 1") ||
+            Input.GetKeyDown($"joystick {j2} button 2");
 
         if (usouControle || analogicoMoveu || botaoPressionado)
         {
-            // Se o EventSystem perdeu o foco (mouse roubou), restaura
             if (EventSystem.current != null &&
                 EventSystem.current.currentSelectedGameObject == null)
             {
-                GameObject alvo = ultimoSelecionado != null
-                               ? ultimoSelecionado
-                               : botaoFocoPadrao;
-
+                GameObject alvo = ultimoSelecionado != null ? ultimoSelecionado : botaoFocoPadrao;
                 if (alvo != null) SelecionarBotao(alvo);
             }
         }
 
-        // Atualiza o último selecionado (só quando é pelo controle/teclado)
         if (EventSystem.current != null &&
             EventSystem.current.currentSelectedGameObject != null)
         {
@@ -112,19 +91,15 @@ public class GerenciadorNavegacaoUI : MonoBehaviour
         }
     }
 
-    // Envia um evento de navegação diretamente para o EventSystem
     void NavegaUI(MoveDirection direcao)
     {
         if (EventSystem.current == null) return;
 
-        // Garante que há um objeto selecionado antes de navegar
         if (EventSystem.current.currentSelectedGameObject == null)
         {
-            GameObject alvo = ultimoSelecionado != null
-                           ? ultimoSelecionado
-                           : botaoFocoPadrao;
+            GameObject alvo = ultimoSelecionado != null ? ultimoSelecionado : botaoFocoPadrao;
             if (alvo != null) SelecionarBotao(alvo);
-            return; // navega no próximo frame, após restaurar foco
+            return;
         }
 
         AxisEventData axisData = new AxisEventData(EventSystem.current);

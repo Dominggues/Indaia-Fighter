@@ -108,7 +108,7 @@ public class SelecaoPersonagemManager : MonoBehaviour
             // Confirmar — Enter ou X (button 1)
             bool confirmarP1 = Input.GetKeyDown(KeyCode.Return)
                             || Input.GetKeyDown(KeyCode.KeypadEnter)
-                            || Input.GetKeyDown("joystick 1 button 1");
+                            || Input.GetKeyDown($"joystick {GerenciadorControles.JoystickP1} button 1");
             if (confirmarP1)
             {
                 p1Pronto = true;
@@ -121,7 +121,7 @@ public class SelecaoPersonagemManager : MonoBehaviour
             // e somente se o cooldown já zerou (evita voltar logo após cancelar seleção)
             bool voltarMenu = (cooldownCirculo <= 0f) &&
                               (Input.GetKeyDown(KeyCode.Escape)
-                           || Input.GetKeyDown("joystick 1 button 2"));
+                           || Input.GetKeyDown($"joystick {GerenciadorControles.JoystickP1} button 2"));
             if (voltarMenu)
             {
                 SceneManager.LoadScene("MenuPrincipal");
@@ -132,7 +132,7 @@ public class SelecaoPersonagemManager : MonoBehaviour
         {
             // P1 já confirmou — Backspace ou Círculo (button 2) cancela a seleção
             bool cancelarP1 = Input.GetKeyDown(KeyCode.Backspace)
-                           || Input.GetKeyDown("joystick 1 button 2");
+                           || Input.GetKeyDown($"joystick {GerenciadorControles.JoystickP1} button 2");
             if (cancelarP1)
             {
                 p1Pronto = false;
@@ -148,7 +148,7 @@ public class SelecaoPersonagemManager : MonoBehaviour
         if (!p2Ativo)
         {
             bool entrarP2 = Input.GetKeyDown(KeyCode.M)
-                         || Input.GetKeyDown("joystick 2 button 9");
+                         || Input.GetKeyDown($"joystick {GerenciadorControles.JoystickP2} button 9");
             if (entrarP2)
             {
                 p2Ativo = true;
@@ -189,7 +189,7 @@ public class SelecaoPersonagemManager : MonoBehaviour
 
             // Confirmar — M ou X (button 1)
             bool confirmarP2 = Input.GetKeyDown(KeyCode.M)
-                            || Input.GetKeyDown("joystick 2 button 1");
+                            || Input.GetKeyDown($"joystick {GerenciadorControles.JoystickP2} button 1");
             if (confirmarP2)
             {
                 p2Pronto = true;
@@ -202,7 +202,7 @@ public class SelecaoPersonagemManager : MonoBehaviour
         {
             // P2 confirmou — RightShift ou Círculo (button 2) cancela
             bool cancelarP2 = Input.GetKeyDown(KeyCode.RightShift)
-                           || Input.GetKeyDown("joystick 2 button 2");
+                           || Input.GetKeyDown($"joystick {GerenciadorControles.JoystickP2} button 2");
             if (cancelarP2)
             {
                 p2Pronto = false;

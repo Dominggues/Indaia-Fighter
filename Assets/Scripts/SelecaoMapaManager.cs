@@ -56,8 +56,8 @@ public class SelecaoMapaManager : MonoBehaviour
         // Teclado: Space ou Enter  |  Controle: X (button 1) de qualquer jogador
         bool confirmar = Input.GetKeyDown(KeyCode.Space)
                       || Input.GetKeyDown(KeyCode.Return)
-                      || Input.GetKeyDown("joystick 1 button 1")
-                      || Input.GetKeyDown("joystick 2 button 1");
+                      || Input.GetKeyDown($"joystick {GerenciadorControles.JoystickP1} button 1")
+                      || Input.GetKeyDown($"joystick {GerenciadorControles.JoystickP2} button 1");
         if (confirmar)
         {
             PlayerPrefs.SetInt("Mapa_Escolhido_ID", indiceAtual);
@@ -67,8 +67,8 @@ public class SelecaoMapaManager : MonoBehaviour
         // ─── Voltar para Seleção de Personagens ──────────────────────
         // Teclado: Escape  |  Controle: Círculo (button 2) de qualquer jogador
         bool voltar = Input.GetKeyDown(KeyCode.Escape)
-                   || Input.GetKeyDown("joystick 1 button 2")
-                   || Input.GetKeyDown("joystick 2 button 2");
+                   || Input.GetKeyDown($"joystick {GerenciadorControles.JoystickP1} button 2")
+                   || Input.GetKeyDown($"joystick {GerenciadorControles.JoystickP2} button 2");
         if (voltar)
         {
             SceneManager.LoadScene("SelecaoDePersonagem");

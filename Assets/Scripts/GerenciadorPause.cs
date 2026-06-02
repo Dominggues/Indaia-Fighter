@@ -19,9 +19,11 @@ public class GerenciadorPause : MonoBehaviour
     void Update()
     {
         // Esc (teclado) OU Options de qualquer um dos dois controles PS4
+        int j1 = GerenciadorControles.JoystickP1;
+        int j2 = GerenciadorControles.JoystickP2;
         bool pressionouPause = Input.GetKeyDown(KeyCode.Escape)
-                            || Input.GetKeyDown("joystick 1 button 9")
-                            || Input.GetKeyDown("joystick 2 button 9");
+                            || Input.GetKeyDown($"joystick {j1} button 9")
+                            || Input.GetKeyDown($"joystick {j2} button 9");
 
         if (pressionouPause)
         {
