@@ -15,6 +15,13 @@ public class Lutador : MonoBehaviour
     public bool estaAbaixado = false;
     public bool estaBloqueando = false;
 
+    [Header("Knockback")]
+    public float knockbackForca = 5f;
+    public float knockbackAlturaForca = 3f;
+    public float knockbackDuracao = 0.2f; // segundos que o Mover() fica suspenso
+
+    private bool emKnockback = false;
+
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
@@ -35,31 +42,6 @@ public class Lutador : MonoBehaviour
     private bool morto = false;
     private bool tocandoOutroJogador = false;
     private float direcaoDoOutroJogador = 0f;
-
-    // ---------------------------------------------------------------
-    // MAPEAMENTO DO CONTROLE PS4 VIA USB (sem DS4Windows)
-    // ---------------------------------------------------------------
-    // joystick 1 = P1 | joystick 2 = P2
-    //
-    // BOTÕES (GetKeyDown/GetKey):
-    //   Quadrado  = joystick button 0
-    //   X         = joystick button 1
-    //   Círculo   = joystick button 2
-    //   L1        = joystick button 4
-    //   Options   = joystick button 9
-    //
-    // EIXOS (Input.GetAxisRaw):
-    //   Analógico Esq. Horizontal = "PS4_LX_P1" / "PS4_LX_P2"  (axis 1)
-    //   Analógico Esq. Vertical   = "PS4_LY_P1" / "PS4_LY_P2"  (axis 2)
-    //   D-pad Horizontal          = "PS4_DpadX_P1" / "PS4_DpadX_P2" (axis 6)
-    //   D-pad Vertical            = "PS4_DpadY_P1" / "PS4_DpadY_P2" (axis 7)
-    //
-    // IMPORTANTE: esses eixos devem ser cadastrados no InputManager
-    //   do projeto (Edit > Project Settings > Input Manager).
-    //   Os nomes usados aqui precisam bater exatamente com o que
-    //   você cadastrar lá. Veja o arquivo InputManager_ADICIONAR.txt
-    //   para as configurações exatas de cada eixo.
-    // ---------------------------------------------------------------
 
     void Awake()
     {
@@ -110,6 +92,9 @@ public class Lutador : MonoBehaviour
     {
         if (morto || Time.timeScale == 0f) return;
 
+        // Enquanto em knockback, não sobrescreve a velocidade — deixa a física agir
+        if (emKnockback) return;
+
         Mover();
     }
 
@@ -117,18 +102,12 @@ public class Lutador : MonoBehaviour
     {
         if (isPlayer1)
         {
-            // --- Teclado (mantido como fallback) ---
             bool abaixadoTeclado   = Input.GetKey(KeyCode.S);
             bool bloqueandoTeclado = Input.GetKey(KeyCode.LeftShift);
 
-            // --- Controle PS4 P1 ---
-            // D-pad para baixo (eixo 7, valor positivo = baixo no PS4)
-            // Analógico esquerdo para baixo (eixo 2, valor positivo = baixo)
-            float lyP1   = Input.GetAxisRaw("PS4_LY_P1");
+            float lyP1    = Input.GetAxisRaw("PS4_LY_P1");
             float dpadYP1 = Input.GetAxisRaw("PS4_DpadY_P1");
             bool abaixadoControle   = (lyP1 > 0.5f) || (dpadYP1 > 0.5f);
-
-            // L1 = joystick 1 button 4
             bool bloqueandoControle = Input.GetKey("joystick 1 button 4");
 
             estaAbaixado   = abaixadoTeclado   || abaixadoControle;
@@ -140,34 +119,27 @@ public class Lutador : MonoBehaviour
             moveX = 0;
             if (!estaAbaixado && !estaBloqueando)
             {
-                // Teclado
                 if (Input.GetKey(KeyCode.A)) moveX = -1;
                 if (Input.GetKey(KeyCode.D)) moveX =  1;
                 if (Input.GetKeyDown(KeyCode.Space) && isGrounded) Jump();
 
-                // Controle — analógico esq. horizontal + D-pad horizontal
                 float lxP1    = Input.GetAxisRaw("PS4_LX_P1");
                 float dpadXP1 = Input.GetAxisRaw("PS4_DpadX_P1");
                 float eixoH   = (Mathf.Abs(lxP1) > Mathf.Abs(dpadXP1)) ? lxP1 : dpadXP1;
 
                 if (Mathf.Abs(eixoH) > 0.3f) moveX = Mathf.Sign(eixoH);
 
-                // X = joystick 1 button 1 → pular
                 if (Input.GetKeyDown("joystick 1 button 1") && isGrounded) Jump();
             }
         }
         else
         {
-            // --- Teclado (mantido como fallback) ---
             bool abaixadoTeclado   = Input.GetKey(KeyCode.DownArrow);
             bool bloqueandoTeclado = Input.GetKey(KeyCode.RightShift);
 
-            // --- Controle PS4 P2 ---
             float lyP2    = Input.GetAxisRaw("PS4_LY_P2");
             float dpadYP2 = Input.GetAxisRaw("PS4_DpadY_P2");
             bool abaixadoControle   = (lyP2 > 0.5f) || (dpadYP2 > 0.5f);
-
-            // L1 = joystick 2 button 4
             bool bloqueandoControle = Input.GetKey("joystick 2 button 4");
 
             estaAbaixado   = abaixadoTeclado   || abaixadoControle;
@@ -179,19 +151,16 @@ public class Lutador : MonoBehaviour
             moveX = 0;
             if (!estaAbaixado && !estaBloqueando)
             {
-                // Teclado
                 if (Input.GetKey(KeyCode.LeftArrow))  moveX = -1;
                 if (Input.GetKey(KeyCode.RightArrow)) moveX =  1;
                 if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded) Jump();
 
-                // Controle — analógico esq. horizontal + D-pad horizontal
                 float lxP2    = Input.GetAxisRaw("PS4_LX_P2");
                 float dpadXP2 = Input.GetAxisRaw("PS4_DpadX_P2");
                 float eixoH   = (Mathf.Abs(lxP2) > Mathf.Abs(dpadXP2)) ? lxP2 : dpadXP2;
 
                 if (Mathf.Abs(eixoH) > 0.3f) moveX = Mathf.Sign(eixoH);
 
-                // X = joystick 2 button 1 → pular
                 if (Input.GetKeyDown("joystick 2 button 1") && isGrounded) Jump();
             }
         }
@@ -204,9 +173,7 @@ public class Lutador : MonoBehaviour
         if (tocandoOutroJogador)
         {
             if ((moveX > 0 && direcaoDoOutroJogador > 0) || (moveX < 0 && direcaoDoOutroJogador < 0))
-            {
                 movimentoFinal = 0;
-            }
         }
 
         rb.linearVelocity = new Vector2(movimentoFinal * speed, rb.linearVelocity.y);
@@ -240,27 +207,23 @@ public class Lutador : MonoBehaviour
 
         if (isPlayer1)
         {
-            // Teclado
             if (Input.GetKeyDown(KeyCode.F)) if (anim != null) anim.SetTrigger("Soco");
             if (Input.GetKeyDown(KeyCode.G)) if (anim != null) anim.SetTrigger("Chute");
 
-            // Controle PS4 P1 — Quadrado (button 0) = Soco | Círculo (button 2) = Chute
             if (Input.GetKeyDown("joystick 1 button 0")) if (anim != null) anim.SetTrigger("Soco");
             if (Input.GetKeyDown("joystick 1 button 2")) if (anim != null) anim.SetTrigger("Chute");
         }
         else
         {
-            // Teclado
             if (Input.GetKeyDown(KeyCode.K)) if (anim != null) anim.SetTrigger("Soco");
             if (Input.GetKeyDown(KeyCode.L)) if (anim != null) anim.SetTrigger("Chute");
 
-            // Controle PS4 P2 — Quadrado (button 0) = Soco | Círculo (button 2) = Chute
             if (Input.GetKeyDown("joystick 2 button 0")) if (anim != null) anim.SetTrigger("Soco");
             if (Input.GetKeyDown("joystick 2 button 2")) if (anim != null) anim.SetTrigger("Chute");
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Vector2 posicaoDoAtacante)
     {
         if (morto) return;
 
@@ -272,8 +235,14 @@ public class Lutador : MonoBehaviour
         if (damage > 0)
         {
             StartCoroutine(PiscarVermelho());
+
             if (audioSourceLutador != null && somImpacto != null)
                 audioSourceLutador.PlayOneShot(somImpacto);
+
+            // Aplica o knockback e suspende o Mover() pelo tempo definido
+            float direcao = transform.position.x > posicaoDoAtacante.x ? 1f : -1f;
+            rb.linearVelocity = new Vector2(direcao * knockbackForca, knockbackAlturaForca);
+            StartCoroutine(TempoKnockback());
         }
 
         if (currentLife <= 0)
@@ -281,6 +250,13 @@ public class Lutador : MonoBehaviour
             currentLife = 0;
             Die();
         }
+    }
+
+    IEnumerator TempoKnockback()
+    {
+        emKnockback = true;
+        yield return new WaitForSeconds(knockbackDuracao);
+        emKnockback = false;
     }
 
     IEnumerator PiscarVermelho()
@@ -324,6 +300,7 @@ public class Lutador : MonoBehaviour
     public void ResetarParaNovoRound()
     {
         morto = false;
+        emKnockback = false;
         currentLife = maxLife;
         if (healthSlider != null) healthSlider.value = currentLife;
 

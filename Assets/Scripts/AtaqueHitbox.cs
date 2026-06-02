@@ -15,23 +15,18 @@ public class AtaqueHitbox : MonoBehaviour
 
     void Update()
     {
-        // Se a animação desligar o colisor ou o objeto, reseta a trava do soco!
         if (meuColisor != null && !meuColisor.enabled)
-        {
             jaDeuDano = false;
-        }
     }
 
     void OnEnable()
     {
-        jaDeuDano = false; // Garante o reset também caso o GameObject seja desativado
+        jaDeuDano = false;
     }
 
-    // Usamos OnTriggerStay2D no lugar de Enter2D. 
-    // Assim, se o soco ligar enquanto eles estão parados grudados, funciona!
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (jaDeuDano) return; 
+        if (jaDeuDano) return;
 
         Lutador lutadorAtingido = collision.GetComponent<Lutador>();
 
@@ -39,8 +34,9 @@ public class AtaqueHitbox : MonoBehaviour
         {
             if (lutadorAtingido.isPlayer1 != meuLutador.isPlayer1)
             {
-                lutadorAtingido.TakeDamage(danoDoAtaque);
-                jaDeuDano = true; 
+                // Passa a posição de quem atacou para calcular a direção do knockback
+                lutadorAtingido.TakeDamage(danoDoAtaque, meuLutador.transform.position);
+                jaDeuDano = true;
             }
         }
     }

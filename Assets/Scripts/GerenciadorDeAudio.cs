@@ -1,33 +1,78 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GerenciadorDeAudio : MonoBehaviour
 {
-    [Header("Configuração da Música")]
-    public AudioClip musicaDeFundo; // É aqui que você vai arrastar o seu áudio!
-    
-    [Range(0f, 1f)] // Cria uma barrinha charmosa no Inspector de 0 a 1
-    public float volumeDaMusica = 0.5f; 
+    [Header("Músicas")]
+    public AudioClip musicaMenu;
+    public AudioClip musicaLuta;
 
-    private AudioSource tocador; // O "rádio" invisível que toca a música
+    [Range(0f, 1f)]
+    public float volume = 0.5f;
 
-    void Start()
+    private AudioSource tocador;
+
+    // Singleton — garante que só existe um na memória
+    private static GerenciadorDeAudio instancia;
+
+    void Awake()
     {
-        // Se não tivermos arrastado nenhuma música, o script não faz nada para não dar erro
-        if (musicaDeFundo == null) return;
+        // Se já existe um GerenciadorDeAudio rodando, este se destrói
+        if (instancia != null && instancia != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
-        // 1. Cria o tocador de áudio no objeto automaticamente
+        instancia = this;
+
+        // Não destrói ao trocar de cena
+        DontDestroyOnLoad(gameObject);
+
         tocador = gameObject.AddComponent<AudioSource>();
-
-        // 2. Coloca o seu áudio lá dentro
-        tocador.clip = musicaDeFundo;
-
-        // 3. Diz para a música repetir para sempre (Loop)
         tocador.loop = true;
+        tocador.volume = volume;
 
-        // 4. Ajusta o volume
-        tocador.volume = volumeDaMusica;
+        // Começa tocando a música do menu
+        TocaMusica(musicaMenu);
 
-        // 5. Dá o Play!
+        // Registra para ser avisado sempre que uma cena nova carregar
+        SceneManager.sceneLoaded += OnCenaCarregada;
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnCenaCarregada;
+    }
+
+    void OnCenaCarregada(Scene cena, LoadSceneMode mode)
+    {
+        switch (cena.name)
+        {
+            case "MenuPrincipal":
+            case "SelecaoDePersonagem":
+            case "SelecaoDeMapas":
+                TocaMusica(musicaMenu);
+                break;
+
+            case "CenaDeLuta":
+                TocaMusica(musicaLuta);
+                break;
+
+            // LoadingVersus e outras cenas: não mexe na música (silêncio ou mantém)
+            default:
+                break;
+        }
+    }
+
+    void TocaMusica(AudioClip clip)
+    {
+        if (clip == null) return;
+
+        // Se já está tocando essa mesma música, não reinicia
+        if (tocador.clip == clip && tocador.isPlaying) return;
+
+        tocador.clip = clip;
         tocador.Play();
     }
 }
