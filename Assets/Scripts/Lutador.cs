@@ -173,7 +173,14 @@ public class Lutador : MonoBehaviour
         if (tocandoOutroJogador)
         {
             if ((moveX > 0 && direcaoDoOutroJogador > 0) || (moveX < 0 && direcaoDoOutroJogador < 0))
-                movimentoFinal = 0;
+            {
+                // FIX bug 1: se está bloqueando, afasta levemente em vez de travar
+                // para evitar que a física trave os dois personagens juntos
+                if (estaBloqueando)
+                    movimentoFinal = -direcaoDoOutroJogador * 0.5f;
+                else
+                    movimentoFinal = 0;
+            }
         }
 
         rb.linearVelocity = new Vector2(movimentoFinal * speed, rb.linearVelocity.y);
@@ -227,7 +234,18 @@ public class Lutador : MonoBehaviour
     {
         if (morto) return;
 
-        if (estaBloqueando) damage = 0;
+        // Bug 2: bloqueio só funciona se o ataque vem pela frente do personagem.
+        // O sprite virado para direita tem localScale.x > 0, então "frente" = direita.
+        // O ataque vem pela frente se o atacante está do mesmo lado que o personagem está olhando.
+        if (estaBloqueando)
+        {
+            bool atacantePelaDireita = posicaoDoAtacante.x > transform.position.x;
+            bool olhandoParaDireita  = transform.localScale.x > 0;
+            bool ataqueVeioDeFrente  = atacantePelaDireita == olhandoParaDireita;
+
+            if (ataqueVeioDeFrente) damage = 0;
+            // Se veio por trás, o dano passa normal — bloqueio ignorado
+        }
 
         currentLife -= damage;
         if (healthSlider != null) healthSlider.value = currentLife;
