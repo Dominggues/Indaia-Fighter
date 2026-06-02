@@ -406,6 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AtaqueHitbox
   danoDoAtaque: 10
+  tipoDoAtaque: 1
 --- !u!1 &5553891652942645073
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,3 +499,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AtaqueHitbox
   danoDoAtaque: 10
+  tipoDoAtaque: 0

@@ -113,8 +113,8 @@ MonoBehaviour:
   isPlayer1: 0
   nomeLutador: Virgi B Splash
   fotoPerfil: {fileID: -1995192765990264215, guid: d08177267d9b7d7459040f33ddb08dc6, type: 3}
-  speed: 11
-  jumpForce: 12
+  speed: 12
+  jumpForce: 15
   estaAbaixado: 0
   estaBloqueando: 0
   maxLife: 100
@@ -406,6 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AtaqueHitbox
   danoDoAtaque: 10
+  tipoDoAtaque: 1
 --- !u!1 &9131408285239027931
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,3 +499,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AtaqueHitbox
   danoDoAtaque: 10
+  tipoDoAtaque: 0

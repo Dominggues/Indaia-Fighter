@@ -3,6 +3,11 @@ using UnityEngine;
 public class AtaqueHitbox : MonoBehaviour
 {
     public int danoDoAtaque = 10;
+    
+    [Header("Configuração do Golpe")]
+    [Tooltip("Selecione se este objeto de colisão representa um SOCO ou um CHUTE")]
+    public TipoAtaque tipoDoAtaque = TipoAtaque.Soco; // Aparecerá como uma lista de seleção na Unity!
+
     private Lutador meuLutador;
     private bool jaDeuDano = false;
     private Collider2D meuColisor;
@@ -15,7 +20,6 @@ public class AtaqueHitbox : MonoBehaviour
 
     void Update()
     {
-        // Se a animação desligar o colisor ou o objeto, reseta a trava do soco!
         if (meuColisor != null && !meuColisor.enabled)
         {
             jaDeuDano = false;
@@ -24,11 +28,9 @@ public class AtaqueHitbox : MonoBehaviour
 
     void OnEnable()
     {
-        jaDeuDano = false; // Garante o reset também caso o GameObject seja desativado
+        jaDeuDano = false; 
     }
 
-    // Usamos OnTriggerStay2D no lugar de Enter2D. 
-    // Assim, se o soco ligar enquanto eles estão parados grudados, funciona!
     void OnTriggerStay2D(Collider2D collision)
     {
         if (jaDeuDano) return; 
@@ -39,7 +41,8 @@ public class AtaqueHitbox : MonoBehaviour
         {
             if (lutadorAtingido.isPlayer1 != meuLutador.isPlayer1)
             {
-                lutadorAtingido.TakeDamage(danoDoAtaque);
+                // MODIFICADO: Enviamos o dano junto com o tipo do ataque configurado neste objeto
+                lutadorAtingido.TakeDamage(danoDoAtaque, tipoDoAtaque);
                 jaDeuDano = true; 
             }
         }

@@ -2,6 +2,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Lista de tipos de ataques para o sistema identificar os golpes
+public enum TipoAtaque
+{
+    Soco,
+    Chute,
+    Outro
+}
+
 public class Lutador : MonoBehaviour
 {
     [Header("Configuração de Player")]
@@ -44,7 +52,6 @@ public class Lutador : MonoBehaviour
         posicaoInicial = transform.position;
 
         if (audioSourceLutador == null) audioSourceLutador = GetComponent<AudioSource>();
-
     }
 
     public void ConfigurarUIInicial()
@@ -74,9 +81,8 @@ public class Lutador : MonoBehaviour
         }
     }
 
-   void Update()
+    void Update()
     {
-        // Se estiver morto OU o jogo estiver pausado (Time.timeScale == 0), ignora os botões!
         if (morto || Time.timeScale == 0f) return; 
         
         InputsJogador();
@@ -85,7 +91,6 @@ public class Lutador : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Se estiver morto OU o jogo estiver pausado, não se move!
         if (morto || Time.timeScale == 0f) return;
         
         Mover();
@@ -178,9 +183,17 @@ public class Lutador : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    // MODIFICADO: Agora a função recebe obrigatoriamente o tipo do ataque que atingiu o lutador
+    public void TakeDamage(int damage, TipoAtaque tipoDoAtaque)
     {
         if (morto) return;
+
+        // REGRA NOVA: Se estiver abaixado E o golpe for soco ou chute, ignora completamente!
+        if (estaAbaixado && (tipoDoAtaque == TipoAtaque.Soco || tipoDoAtaque == TipoAtaque.Chute))
+        {
+            Debug.Log(nomeLutador + " evitou o dano pois estava abaixado!");
+            return; // Corta a execução da função aqui (não perde vida, não pisca, não faz som)
+        }
 
         if (estaBloqueando) 
         {
@@ -190,7 +203,6 @@ public class Lutador : MonoBehaviour
         currentLife -= damage;
         if (healthSlider != null) healthSlider.value = currentLife;
         
-        // TOCA O SOM DE IMPACTO SE LEVOU DANO!
         if (damage > 0) 
         {
             StartCoroutine(PiscarVermelho());
@@ -269,6 +281,8 @@ public class Lutador : MonoBehaviour
         if (sr != null) sr.color = Color.white;
         tocandoOutroJogador = false;
         direcaoDoOutroJogador = 0f;
+        estaAbaixado = false;
+        estaBloqueando = false;
         
         this.enabled = true;
     }

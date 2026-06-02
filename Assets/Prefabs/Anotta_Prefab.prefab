@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AtaqueHitbox
   danoDoAtaque: 10
+  tipoDoAtaque: 1
 --- !u!61 &6974741603636731022
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -184,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AtaqueHitbox
   danoDoAtaque: 10
+  tipoDoAtaque: 0
 --- !u!1 &5988164272499366799
 GameObject:
   m_ObjectHideFlags: 0
