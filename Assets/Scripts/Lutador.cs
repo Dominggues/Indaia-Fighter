@@ -194,7 +194,8 @@ public class Lutador : MonoBehaviour
 
     void Ataques()
     {
-        if (estaBloqueando) return;
+        // NOVA REGRA: Se o jogador estiver bloqueando OU abaixado, ele não pode atacar.
+        if (estaBloqueando || estaAbaixado) return;
 
         int meuJoystick = isPlayer1 ? GerenciadorControles.JoystickP1 : GerenciadorControles.JoystickP2;
 
