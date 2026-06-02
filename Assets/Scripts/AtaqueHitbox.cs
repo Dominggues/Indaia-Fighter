@@ -21,19 +21,17 @@ public class AtaqueHitbox : MonoBehaviour
     void Update()
     {
         if (meuColisor != null && !meuColisor.enabled)
-        {
             jaDeuDano = false;
-        }
     }
 
     void OnEnable()
     {
-        jaDeuDano = false; 
+        jaDeuDano = false;
     }
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (jaDeuDano) return; 
+        if (jaDeuDano) return;
 
         Lutador lutadorAtingido = collision.GetComponent<Lutador>();
 
@@ -41,9 +39,9 @@ public class AtaqueHitbox : MonoBehaviour
         {
             if (lutadorAtingido.isPlayer1 != meuLutador.isPlayer1)
             {
-                // MODIFICADO: Enviamos o dano junto com o tipo do ataque configurado neste objeto
-                lutadorAtingido.TakeDamage(danoDoAtaque, tipoDoAtaque);
-                jaDeuDano = true; 
+                // Passa a posição de quem atacou para calcular a direção do knockback
+                lutadorAtingido.TakeDamage(danoDoAtaque, meuLutador.transform.position, tipoDoAtaque);
+                jaDeuDano = true;
             }
         }
     }

@@ -13,21 +13,29 @@ public class GerenciadorPause : MonoBehaviour
 
     void Start()
     {
-        // Garante que o pause começa desligado ao iniciar a luta
         if (painelPause != null) painelPause.SetActive(false);
     }
 
     void Update()
     {
-        // Esc ativa ou desativa o pause
-        if (Input.GetKeyDown(KeyCode.Escape))
+        // Esc (teclado) OU Options de qualquer um dos dois controles PS4
+        int j1 = GerenciadorControles.JoystickP1;
+        int j2 = GerenciadorControles.JoystickP2;
+        bool pressionouPause = Input.GetKeyDown(KeyCode.Escape)
+                            || Input.GetKeyDown($"joystick {j1} button 9")
+                            || Input.GetKeyDown($"joystick {j2} button 9");
+
+        if (pressionouPause)
         {
             if (jogoPausado) AlternarPause(false);
-            else AlternarPause(true);
+            else             AlternarPause(true);
         }
 
-        // Se o jogo estiver pausado e perder o foco do teclado por causa do mouse, força de volta
-        if (jogoPausado && EventSystem.current.currentSelectedGameObject == null && botaoPrimeiroFoco != null)
+        // Mantém o foco no botão quando estiver pausado
+        if (jogoPausado
+            && EventSystem.current != null
+            && EventSystem.current.currentSelectedGameObject == null
+            && botaoPrimeiroFoco != null)
         {
             EventSystem.current.SetSelectedGameObject(botaoPrimeiroFoco.gameObject);
         }
@@ -40,10 +48,9 @@ public class GerenciadorPause : MonoBehaviour
 
         if (pausar)
         {
-            Time.timeScale = 0f; // Congela o tempo do jogo (física, animações, etc)
-            
-            // Força o teclado a focar no botão Continuar
-            if (botaoPrimeiroFoco != null)
+            Time.timeScale = 0f;
+
+            if (botaoPrimeiroFoco != null && EventSystem.current != null)
             {
                 EventSystem.current.SetSelectedGameObject(null);
                 EventSystem.current.SetSelectedGameObject(botaoPrimeiroFoco.gameObject);
@@ -51,13 +58,13 @@ public class GerenciadorPause : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 1f; // Devolve o tempo ao normal
+            Time.timeScale = 1f;
         }
     }
 
     public void SairParaOMenu()
     {
-        Time.timeScale = 1f; // IMPORTANTE: Descongela o tempo antes de mudar de cena!
-        SceneManager.LoadScene("MenuPrincipal"); // Troque pelo nome exato da sua cena de menu
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MenuPrincipal");
     }
 }
