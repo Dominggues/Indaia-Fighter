@@ -2,6 +2,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Lista de tipos de ataques para o sistema identificar os golpes
+public enum TipoAtaque
+{
+    Soco,
+    Chute,
+    Outro
+}
+
 public class Lutador : MonoBehaviour
 {
     [Header("Configuração de Player")]
@@ -83,7 +91,6 @@ public class Lutador : MonoBehaviour
     void Update()
     {
         if (morto || Time.timeScale == 0f) return;
-
         InputsJogador();
         Ataques();
     }
@@ -206,13 +213,16 @@ public class Lutador : MonoBehaviour
         if (Input.GetKeyDown($"joystick {meuJoystick} button 2")) if (anim != null) anim.SetTrigger("Chute");
     }
 
-    public void TakeDamage(int damage, Vector2 posicaoDoAtacante)
+    public void TakeDamage(int damage, Vector2 posicaoDoAtacante, TipoAtaque tipoDoAtaque)
     {
         if (morto) return;
 
-        // Bug 2: bloqueio só funciona se o ataque vem pela frente do personagem.
-        // O sprite virado para direita tem localScale.x > 0, então "frente" = direita.
-        // O ataque vem pela frente se o atacante está do mesmo lado que o personagem está olhando.
+        if (estaAbaixado && (tipoDoAtaque == TipoAtaque.Soco || tipoDoAtaque == TipoAtaque.Chute))
+        {
+            Debug.Log(nomeLutador + " evitou o dano pois estava abaixado!");
+            return;
+        }
+
         if (estaBloqueando)
         {
             bool atacantePelaDireita = posicaoDoAtacante.x > transform.position.x;
@@ -316,7 +326,9 @@ public class Lutador : MonoBehaviour
         if (sr != null) sr.color = Color.white;
         tocandoOutroJogador = false;
         direcaoDoOutroJogador = 0f;
-
+        estaAbaixado = false;
+        estaBloqueando = false;
+    
         this.enabled = true;
     }
 

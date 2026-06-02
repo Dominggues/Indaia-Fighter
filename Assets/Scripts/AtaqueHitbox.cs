@@ -3,6 +3,11 @@ using UnityEngine;
 public class AtaqueHitbox : MonoBehaviour
 {
     public int danoDoAtaque = 10;
+    
+    [Header("Configuração do Golpe")]
+    [Tooltip("Selecione se este objeto de colisão representa um SOCO ou um CHUTE")]
+    public TipoAtaque tipoDoAtaque = TipoAtaque.Soco; // Aparecerá como uma lista de seleção na Unity!
+
     private Lutador meuLutador;
     private bool jaDeuDano = false;
     private Collider2D meuColisor;
@@ -35,7 +40,7 @@ public class AtaqueHitbox : MonoBehaviour
             if (lutadorAtingido.isPlayer1 != meuLutador.isPlayer1)
             {
                 // Passa a posição de quem atacou para calcular a direção do knockback
-                lutadorAtingido.TakeDamage(danoDoAtaque, meuLutador.transform.position);
+                lutadorAtingido.TakeDamage(danoDoAtaque, meuLutador.transform.position, tipoDoAtaque);
                 jaDeuDano = true;
             }
         }

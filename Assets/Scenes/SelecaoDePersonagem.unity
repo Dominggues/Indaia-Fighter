@@ -294,7 +294,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PRESSIONE M PARA P2
+  m_text: PRESSIONE START PARA P2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 350c697ad3813d94cb8a4027a57e01a1, type: 2}
   m_sharedMaterial: {fileID: 8328279313192843593, guid: 350c697ad3813d94cb8a4027a57e01a1, type: 2}
@@ -390,8 +390,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 588, y: 474}
-  m_SizeDelta: {x: 1090.6595, y: 45.1959}
+  m_AnchoredPosition: {x: 541.7, y: 468.9336}
+  m_SizeDelta: {x: 1361.1144, y: 64.7132}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &521094510
 GameObject:
